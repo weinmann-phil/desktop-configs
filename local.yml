@@ -12,6 +12,7 @@
       - tmux
       - vim-nox
       - dconf-cli
+      - python3-psutil
 
   - name: copy wallpaper file
     copy:
