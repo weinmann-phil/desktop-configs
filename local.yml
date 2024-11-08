@@ -15,10 +15,10 @@
 
   - name: copy wallpaper file
     copy:
-      - src: files/esa-iss.png
-        dest: /usr/share/backgrounds/ansible-wallpaper.png
-        owner: root
-        group: root
+      src: files/esa-iss.png
+      dest: /usr/share/backgrounds/ansible-wallpaper.png
+      owner: root
+      group: root
 
   - name: set wallpaper
     dconf:
