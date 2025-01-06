@@ -6,7 +6,7 @@
 
   tasks:
   - name: Install important or required system packages
-    package:
+    pkg:
       name:
         - apt-transport-https
         - ca-certificates
