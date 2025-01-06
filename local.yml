@@ -6,8 +6,8 @@
 
   tasks:
   - name: Install important or required system packages
-    apt:
-      pkg:
+    package:
+      name:
         - apt-transport-https
         - ca-certificates
         - curl
