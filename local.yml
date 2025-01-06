@@ -22,15 +22,15 @@
       group: root
 
   - name: set wallpaper
-    become_user: cccp0
+    become_user: mnv1c
     dconf:
       key: "/org/mate/desktop/background/picture-uri"
       value: "'file:///usr/share/background/ansible-wallpaper.png'"
 
   - name: set wallpaper position
-    become_user: cccp0
+    become_user: mnv1c
     dconf:
-      key: "/org/mate/desktop/background/picture-options"
+      key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
 
 
