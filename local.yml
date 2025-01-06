@@ -5,7 +5,18 @@
   become: true
 
   tasks:
-  - name: install packages
+  - name: Install important or required system packages
+    apt:
+      pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties
+        - python3-pip
+        - virtualenv
+        - python3-setuptools
+
+  - name: Install additional packages
     package:
       name: 
       - htop
