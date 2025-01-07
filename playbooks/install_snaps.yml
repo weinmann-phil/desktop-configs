@@ -10,3 +10,17 @@
     - kubectl
     - kubelet
 
+- name: Install Simple Packages
+  community.general.snap:
+    name: "{{ item }}"
+    classic: no
+  loop:
+    - keepassxc
+    - kompose
+    - kube-apiserver
+    - mqttx
+    - multipass
+    - nmap
+    - postman
+    - slack
+    - terraform-docs
