@@ -1,5 +1,4 @@
 ---
-# Test
 - hosts: localhost
   tags: always
   become: true
@@ -45,6 +44,13 @@
   # Install Docker
   - name: Install Docker (Debian v Ubuntu)
     include_tasks: playbooks/install_docker.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
+
+  # Install Terraspace
+  - name: Install Terraspace (Debian v Ubuntu)
+    include_tasks: playbooks/install_terraspace.yml
     tags: always
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
