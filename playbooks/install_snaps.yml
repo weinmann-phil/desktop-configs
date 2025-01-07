@@ -9,6 +9,7 @@
     - google-cloud-cli
     - kubectl
     - kubelet
+    - node
 
 - name: Install Simple Packages
   community.general.snap:
