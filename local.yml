@@ -38,6 +38,10 @@
       - dotnet-sdk-8.0
       - dotnet-runtime-8.0
       - gpp
+      - netcat-traditional
+      - dnsutils
+      - mysql-client
+      - postgresql-client
 
   # Install Snaps
   - name: Install Snap Packages
