@@ -90,7 +90,7 @@
   - name: set wallpaper
     become_user: mnv1c
     dconf:
-      key: "/org/mate/desktop/background/picture-uri"
+      key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/background/ansible-wallpaper.png'"
 
   - name: set wallpaper position
