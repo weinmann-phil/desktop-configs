@@ -8,7 +8,6 @@
   ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/keyrings/microsoft.asc
-    state: present
 
 - name: Add Azure CLI GPG apt KEY
   ansible.builtin.apt_key:
