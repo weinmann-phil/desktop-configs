@@ -37,6 +37,7 @@
       - default-jdk
       - dotnet-sdk-8.0
       - dotnet-runtime-8.0
+      - gpp
 
   # Install Snaps
   - name: Install Snap Packages
