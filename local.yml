@@ -37,7 +37,7 @@
 
   # Install Docker
   - name: Install Docker (Debian v Ubuntu)
-    include_tasks: playbook/install_docker.yml
+    include_tasks: playbooks/install_docker.yml
     tags: always
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
