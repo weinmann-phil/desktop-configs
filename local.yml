@@ -34,6 +34,7 @@
       - dconf-cli
       - python3-psutil
       - default-jre
+      - openjdk-22-jdk-headless
 
   # Install Snaps
   - name: Install Snap Packages
