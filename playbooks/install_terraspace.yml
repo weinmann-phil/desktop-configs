@@ -1,0 +1,31 @@
+- name: Create directory for Terraspace's GPG
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Add APT signing key from URL
+  apt_key:
+    url: https://apt.boltops.com/boltops-key.public
+    state: present
+
+- name: Add Terraspace Repository
+  apt_repository:
+    repo: deb https://apt.boltops.com stable main
+    filename: boltops
+    state: present
+
+- name: Update apt and install Terraspace
+  apt:
+    name: terraspace
+    state: present
+    update_cache: true
+
+- name: Add Terraspace Group
+  group:
+    name: terraspace
+    state: present
+
+- name: Add user to Terraspace group
+  user:
+    name: mnv1c
