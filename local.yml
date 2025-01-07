@@ -42,6 +42,7 @@
       - dnsutils
       - mysql-client
       - postgresql-client
+      - software-properties-common
 
   # Install Snaps
   - name: Install Snap Packages
@@ -67,6 +68,13 @@
   # Install Node Version Manager
   - name: Install Node Version Manager
     include_tasks: playbooks/install_nvm.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
+
+  # Install Azure CLI
+  - name: Install Azure CLI
+    include_tasks: playbooks/install_azure_cli.yml
     tags: always
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
