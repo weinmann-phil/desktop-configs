@@ -75,7 +75,7 @@
 
   - name: Add user to Docker group
     user:
-      name: "{{ ansible_user }}"
+      name: mnv1c
 
   - name: Enable and start Docker services
     systemd:
