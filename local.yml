@@ -55,6 +55,13 @@
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
+  # Install Node Version Manager
+  - name: Install Node Version Manager
+    include_tasks: playbooks/install_nvm.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
+
   # Customize Desktop
   - name: copy wallpaper file
     copy:
