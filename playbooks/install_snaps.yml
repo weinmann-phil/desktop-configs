@@ -1,4 +1,12 @@
-- name: Install OpenToFu
+- name: Install Classic Packages
   community.general.snap:
-    name: opentofu
+    name: "{{ item }}"
     classic: yes
+  loop:
+    - opentofu
+    - go
+    - aws-cli
+    - google-cloud-cli
+    - kubectl
+    - kubelet
+
