@@ -35,6 +35,13 @@
       - dconf-cli
       - python3-psutil
 
+  # Install Snaps
+  - name: Install Snap Packages
+    include_tasks: playbooks/install_snaps.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Ubuntu"]
+
   # Install Docker
   - name: Install Docker (Debian v Ubuntu)
     include_tasks: playbooks/install_docker.yml

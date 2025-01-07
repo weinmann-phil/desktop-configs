@@ -1,0 +1,4 @@
+- name: Install OpenToFu
+  community.general.snap:
+    name: opentofu
+    classic: yes
