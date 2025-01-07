@@ -33,6 +33,7 @@
       - vim-nox
       - dconf-cli
       - python3-psutil
+      - default-jre
 
   # Install Snaps
   - name: Install Snap Packages
