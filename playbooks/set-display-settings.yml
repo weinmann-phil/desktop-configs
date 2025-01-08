@@ -14,21 +14,22 @@
 
 - name: Position Wallpaper
   become_user: mnv1c
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
 
 # Set screensaver defintions
 - name: Set screensaver after 900 seconds
   become_user: mnv1c
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/session/idle-delay"
     value: 900
     state: present
 
 # Set the icon size within Dock
 - name: Define icon size of dock
-  dconf:
+  become_user: mnv1c
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size"
-    value: "20"
+    value: 20
     state: present
