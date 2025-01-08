@@ -1,3 +1,4 @@
+# Set wallpaper
 - name: Copy Wallpaper File
   copy:
     src: imgs/stars-wallpaper.png
@@ -16,3 +17,11 @@
   dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
+
+# Set screensaver defintions
+- name: Set screensaver after 900 seconds
+  become_user: mnv1c
+  dconf:
+    key: "/org/gnome/desktop/session/idle-delay"
+    value: 900
+    state: present
