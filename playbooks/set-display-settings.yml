@@ -25,3 +25,10 @@
     key: "/org/gnome/desktop/session/idle-delay"
     value: 900
     state: present
+
+# Set the icon size within Dock
+- name: Define icon size of dock
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size"
+    value: 20
+    state: present
