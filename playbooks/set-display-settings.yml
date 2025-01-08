@@ -30,5 +30,5 @@
 - name: Define icon size of dock
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size"
-    value: 20
+    value: "20"
     state: present
