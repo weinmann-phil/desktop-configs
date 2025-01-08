@@ -1,7 +1,7 @@
 - name: Copy Wallpaper File
   copy:
     src: imgs/stars-wallpaper.jpg
-    dest: /usr/share/backgrounds/space-wallpaper.jpg
+    dest: /usr/share/backgrounds/stars-wallpaper.jpg
     owner: root
     group: root
 
