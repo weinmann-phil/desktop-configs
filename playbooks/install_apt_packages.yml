@@ -1,0 +1,25 @@
+- name: Install system and application packages with APT
+  ansible.builtin.apt:
+    pkg: 
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - dconf-cli
+      - default-jdk
+      - default-jre
+      - dnsutils
+      - dotnet-runtime-8.0
+      - dotnet-sdk-8.0
+      - gnupg
+      - gpp
+      - htop
+      - mysql-client
+      - neovim
+      - netcat-traditional
+      - postgresql-client
+      - python3-pip
+      - python3-setuptools
+      - software-properties-common
+      - tree
+      - virtualenv
+

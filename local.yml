@@ -14,35 +14,12 @@
       upgrade: dist
       cache_valid_time: 3600
 
-  - name: Install important or required system packages
-    apt:
-      pkg:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - python3-pip
-        - virtualenv
-        - python3-setuptools
-        - gnupg
-
-  - name: Install additional packages
-    package:
-      name: 
-      - htop
-      - tmux
-      - vim-nox
-      - dconf-cli
-      - python3-psutil
-      - default-jre
-      - default-jdk
-      - dotnet-sdk-8.0
-      - dotnet-runtime-8.0
-      - gpp
-      - netcat-traditional
-      - dnsutils
-      - mysql-client
-      - postgresql-client
-      - software-properties-common
+  # Install APT Packages
+  - name: Install APT Packages
+    include_tasks: playbooks/install_apt_packages.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
 
   # Install Snaps
   - name: Install Snap Packages
