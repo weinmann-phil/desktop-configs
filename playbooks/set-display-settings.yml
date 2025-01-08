@@ -1,6 +1,6 @@
 - name: Copy Wallpaper File
   copy:
-    src: imgs/space-wallpaper.jpg
+    src: imgs/stars-wallpaper.jpg
     dest: /usr/share/backgrounds/space-wallpaper.jpg
     owner: root
     group: root
@@ -9,7 +9,7 @@
   become_user: mnv1c
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
-    value: "'file:///usr/share/backgrounds/space-wallpaper.jpg'"
+    value: "'file:///usr/share/backgrounds/stars-wallpaper.jpg'"
 
 - name: Position Wallpaper
   become_user: mnv1c
