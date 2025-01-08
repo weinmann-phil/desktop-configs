@@ -80,24 +80,11 @@
       - ansible_distribution in ["Debian", "Ubuntu"]
 
   # Customize Desktop
-  - name: copy wallpaper file
-    copy:
-      src: files/esa-iss.png
-      dest: /usr/share/backgrounds/ansible-wallpaper.png
-      owner: root
-      group: root
-
-  - name: set wallpaper
-    become_user: mnv1c
-    dconf:
-      key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
-
-  #- name: set wallpaper position
-  #  become_user: mnv1c
-  #  dconf:
-  #    key: "/org/gnome/desktop/background/picture-options"
-  #    value: "'zoom'"
+  - name: Customize Desktop
+    include_tasks: playbooks/set-display-settings.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Ubuntu"]
 
 
 # Tasks to complete before running roles

@@ -1,0 +1,18 @@
+- name: Copy Wallpaper File
+  copy:
+    src: files/space-wallpaper.jpg
+    dest: /usr/share/backgrounds/space-wallpaper.jpg
+    owner: root
+    group: root
+
+- name: Set wallpaper
+  become_user: mnv1c
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/space-wallpaper.jpg'"
+
+- name: Position Wallpaper
+  become_user: mnv1c
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
