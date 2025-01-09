@@ -63,6 +63,13 @@
     when:
       - ansible_distribution in ["Ubuntu"]
 
+  # Create base structure
+  - name: Add home folder structure
+    include_tasks: playbooks/set-root-folder-structure
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
+
 
 # Tasks to complete before running roles
 #- hosts: all
