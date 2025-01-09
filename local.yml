@@ -65,7 +65,7 @@
 
   # Create base structure
   - name: Add home folder structure
-    include_tasks: playbooks/set-root-folder-structure
+    include_tasks: playbooks/set-root-folder-structure.yml
     tags: always
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
