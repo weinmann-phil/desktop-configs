@@ -1,0 +1,6 @@
+- name: Checkout NeoVim Base IDE
+  ansible.builtin.git:
+    repo: 'https://github.com/weinmann-phil/base-setup.nvim.git'
+    dest: /home/mnv1c/.config/nvim
+    version: main
+

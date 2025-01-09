@@ -70,7 +70,14 @@
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
+  # Clone GIT Repos with further base configurations
+  - name: Clone GIT Repos with additional configurations
+    include_tasks: playbooks/clone-base-git-repos.yml
+    tags: always
+    when: 
+      - ansible_distribution in ["Debian", "Ubuntu"]
 
+  
 # Tasks to complete before running roles
 #- hosts: all
 #  tags: always
