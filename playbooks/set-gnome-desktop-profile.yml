@@ -8,6 +8,14 @@
   command: gsettings get org.gnome.Terminal.ProfilesList default
   register: profile_id_output
 
+- name: Check value profile_id_output
+  debug:
+    msg: "GNOME Terminal Default ID: {{ profile_id_output.stdout }}" 
+
+- name: Check value host_username
+  debug:
+    msg: "Current User: {{ host_username.stdout }}"
+
 # GNOME TERMINAL SETTINGS
 - name: Turn audible bell off
   become_user: "{{ host_username.stdout }}"
