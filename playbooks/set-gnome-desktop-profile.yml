@@ -103,7 +103,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/custom-command"
-    value: ""
+    value: "''"
 
 - name: Define Terminal Default Size Columns
   become_user: "{{ host_username.stdout }}"
