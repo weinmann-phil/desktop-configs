@@ -67,7 +67,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cjk-utf8-ambiguous-width"
-    value: "narrow"
+    value: "'narrow'"
 
 - name: Define Terminal Cursor Background Colour
   become_user: "{{ host_username.stdout }}"
