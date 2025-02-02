@@ -79,7 +79,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-blink-mode"
-    value: "system"
+    value: "'system'"
 
 - name: Define Terminal Cursor Colours
   become_user: "{{ host_username.stdout }}"
@@ -97,7 +97,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-shape"
-    value: "block"
+    value: "'block'"
 
 - name: Define Terminal Custom Command
   become_user: "{{ host_username.stdout }}"
@@ -121,7 +121,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/delete-bindings"
-    value: "delete-sequence"
+    value: "'delete-sequence'"
 
 - name: Define Terminal Enable BIDI
   become_user: "{{ host_username.stdout }}"
@@ -151,7 +151,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/exit-action"
-    value: "close"
+    value: "'close'"
 
 - name: Define Terminal Font
   become_user: "{{ host_username.stdout }}"
@@ -199,7 +199,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/preserve-working-directory"
-    value: "safe"
+    value: "'safe'"
 
 - name: Define Terminal Rewrap on Resize
   become_user: "{{ host_username.stdout }}"
@@ -241,13 +241,13 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scrollbar-policy"
-    value: "always"
+    value: "'always'"
 
 - name: Define Terminal Text Blink Mode
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/text-blink-mode"
-    value: "always"
+    value: "'always'"
 
 - name: Define Terminal Use Custom Command
   become_user: "{{ host_username.stdout }}"
@@ -283,5 +283,5 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/visible-name"
-    value: "{{ host_username.stdout }}"
+    value: "'{{ host_username.stdout }}'"
 
