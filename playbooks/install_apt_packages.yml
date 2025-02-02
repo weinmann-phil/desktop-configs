@@ -11,7 +11,7 @@
       - dnsutils
       - dotnet-runtime-8.0
       - dotnet-sdk-8.0
-      - fastfetch
+      #- fastfetch
       - gnupg
       - gpp
       - htop
