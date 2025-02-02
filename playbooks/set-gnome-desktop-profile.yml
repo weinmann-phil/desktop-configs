@@ -5,7 +5,7 @@
   register: host_username
 
 - name: Get the default profile ID of GNOME Terminal
-  command: gsettings get org.gnome.Terminal.Legacy.ProfileList default
+  command: gsettings get org.gnome.Terminal.Legacy.ProfilesList default
   register: profile_id_output
 
 # GNOME TERMINAL SETTINGS
