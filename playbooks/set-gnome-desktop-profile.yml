@@ -31,7 +31,7 @@
   become_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/backspace-binding"
-    value: "ascii-delete"
+    value: "'ascii-delete'"
 
 - name: Define Terminal Colour for Bold Characters
   become_user: "{{ host_username.stdout }}"
