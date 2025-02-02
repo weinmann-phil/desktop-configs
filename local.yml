@@ -27,6 +27,13 @@
     tags: always
     when:
       - ansible_distribution in ["Ubuntu"]
+  
+  # Customize Gnome Terminal
+  - name: Customize Gnome Terminal
+    include_tasks: playbooks/set-gnome-desktop-profile.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
 
   # Install Docker
   - name: Install Docker (Debian v Ubuntu)
