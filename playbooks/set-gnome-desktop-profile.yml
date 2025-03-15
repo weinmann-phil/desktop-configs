@@ -10,12 +10,12 @@
   register: profile_id_output
 
 - name: Check value profile_id_output
-  become_user: {{ host_username.stdout }}
+  become_user: "{{ host_username.stdout }}"
   debug:
     msg: "GNOME Terminal Default ID: {{ profile_id_output.stdout }}" 
 
 - name: Check value host_username
-  become_user: {{ host_username.stdout }}
+  become_user: "{{ host_username.stdout }}"
   debug:
     msg: "Current User: {{ host_username.stdout }}"
 
