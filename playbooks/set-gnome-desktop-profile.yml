@@ -5,338 +5,338 @@
   register: host_username
 
 - name: Get the default profile ID of GNOME Terminal
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   command: gsettings get org.gnome.Terminal.ProfilesList default
   register: profile_id_output
 
 - name: Check value profile_id_output
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   debug:
     msg: "GNOME Terminal Default ID: {{ profile_id_output.stdout }}" 
 
 - name: Check value host_username
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   debug:
     msg: "Current User: {{ host_username.stdout }}"
 
 # GNOME TERMINAL SETTINGS
 - name: Turn audible bell off
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/audible-bell"
     value: "false"
     state: present
 
 - name: Define Terminal Background Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/background-color"
     value: "'rgb(0,43,54)'"
     state: present
 
 - name: Define Terminal Background Transperency
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/background-transparency-percent"
     value: "50"
     state: present
 
 - name: Define Terminal Backspace Binding
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/backspace-binding"
     value: "'ascii-delete'"
     state: present
 
 - name: Define Terminal Colour for Bold Characters
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/bold-color"
     value: "'#000000'"
     state: present
 
 - name: Defint Terminal Bold Colour to be same as FG
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/bold-color-same-as-fg"
     value: "true" 
     state: present
 
 - name: Define Terminal Brightness Settings for Bold Characters
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/bold-is-bright"
     value: "false"
     state: present
 
 - name: Define Terminal Cell Height Scale
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cell-height-scale"
     value: "1.0"
     state: present
 
 - name: Define Terminal Cell Width Scale
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cell-width-scale"
     value: "1.0"
     state: present
 
 - name: Define Terminal CJK UFT8
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cjk-utf8-ambiguous-width"
     value: "'narrow'"
     state: present
 
 - name: Define Terminal Cursor Background Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-background-color"
     value: "'#000000'"
     state: present
 
 - name: Define Terminal Cursor Blink Mode
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-blink-mode"
     value: "'system'"
     state: present
 
 - name: Define Terminal Cursor Colours
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-colors-set"
     value: "true"
     state: present
 
 - name: Define Terminal Cursor Foreground Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-foreground-color"
     value: "'#ffffff'"
     state: present
 
 - name: Define Terminal Cursor Shape
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/cursor-shape"
     value: "'block'"
     state: present
 
 - name: Define Terminal Custom Command
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/custom-command"
     value: "''"
     state: present
 
 - name: Define Terminal Default Size Columns
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/default-size-columns"
     value: "300"
     state: present
 
 - name: Define Terminal Default Size Rows
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/default-size-rows"
     value: "75"
     state: present
 
 - name: Define Terminal Delete Bindings
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/delete-bindings"
     value: "'delete-sequence'"
     state: present
 
 - name: Define Terminal Enable BIDI
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/enable-bidi"
     value: "true"
     state: present
 
 - name: Define Terminal Enable Shaping
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/enable-shaping"
     value: "true"
     state: present
 
 - name: Define Terminal Enable Sixel
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/enable-sixel"
     value: "false"
     state: present
 
 - name: Define Terminal Encoding
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/encoding"
     value: "'UTF-8'"
     state: present
 
 - name: Define Terminal Exit Action
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/exit-action"
     value: "'close'"
     state: present
 
 - name: Define Terminal Font
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/font"
     value: "'Monospace 9'"
     state: present
 
 - name: Define Terminal Foreground Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/foreground-color"
     value: "'rgb(131,148,150)'"
     state: present
 
 - name: Define Terminal Highlight Background Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/highlight-background-color"
     value: "'#000000'"
     state: present
 
 - name: Define Terminal Highlight Colours
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/hightlight-colors-set"
     value: "false"
     state: present
 
 - name: Define Terminal Highlight Foreground Colour
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/hightlight-foreground-color"
     value: "'#000000'"
     state: present
 
 - name: Define Terminal Login Shell
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/login-shell"
     value: "false"
     state: present
 
 - name: Define Terminal Palette
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/palette"
     value: "['rgb(23,20,33)', 'rgb(192,28,40)', 'rgb(38,162,105)', 'rgb(162,115,76)', 'rgb(18,72,139)', 'rgb(162,71,186)', 'rgb(42,161,179)', 'rgb(42,161,179)', 'rgb(208,207,204)', 'rgb(94,92,100)', 'rgb(246,97,81)', 'rgb(51,218,122)', 'rgb(233,173,12)', 'rgb(42,123,222)', 'rgb(192,97,203)', 'rgb(51,199,222)', 'rgb(255,255,255)']"
     state: present
 
 - name: Define Terminal Preserve Working Directory
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/preserve-working-directory"
     value: "'safe'"
     state: present
 
 - name: Define Terminal Rewrap on Resize
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/rewrap-on-resize"
     value: "true"
     state: present
 
 - name: Define Terminal Scroll on Insert
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scroll-on-insert"
     value: "true"
     state: present
 
 - name: Define Terminal Scroll on Keystroke
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scroll-on-keystroke"
     value: "true"
     state: present
 
 - name: Define Terminal Scroll on Output
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scroll-on-output"
     value: "true"
     state: present
 
 - name: Define Terminal Scrollback Lines
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scrollback-lines"
     value: "100000"
     state: present
 
 - name: Define Terminal Scrollback Unlimited
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scrollback-unlimited"
     value: "false"
     state: present
 
 - name: Define Terminal Scrollbar Policy
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/scrollbar-policy"
     value: "'always'"
     state: present
 
 - name: Define Terminal Text Blink Mode
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/text-blink-mode"
     value: "'always'"
     state: present
 
 - name: Define Terminal Use Custom Command
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/use-custom-command"
     value: "false"
     state: present
 
 - name: Define Terminal Use System Font
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/use-system-font"
     value: "false"
     state: present
 
 - name: Define Terminal Use Theme Colours
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/use-theme-colors"
     value: "false"
     state: present
 
 - name: Define Terminal Use Theme Transparency
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/use-theme-transparency"
     value: "false"
     state: present
 
 - name: Define Terminal Use Transparent Background
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/use-transparent-background"
     value: "true"
     state: present
 
 - name: Define Terminal Visible Name
-  become_user: "{{ host_username.stdout }}"
+  sudo_user: "{{ host_username.stdout }}"
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/visible-name"
     value: "'{{ host_username.stdout }}'"
