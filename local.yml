@@ -92,7 +92,7 @@
       - ansible_distribution in ["Debian", "Ubuntu"]
 
   roles:
-    - role: professormanhattan.bravebrowser
+    - professormanhattan.bravebrowser
   
 # Tasks to complete before running roles
 #- hosts: all
