@@ -42,6 +42,13 @@
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
+  # Install Dotnet
+  - name: Install Dotnet
+    include_tasks: playbooks/install_dotnet.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
+
   # Install Terraspace
   - name: Install Terraspace (Debian v Ubuntu)
     include_tasks: playbooks/install_terraspace.yml
@@ -84,6 +91,8 @@
     when: 
       - ansible_distribution in ["Debian", "Ubuntu"]
 
+  roles:
+    - role: professormanhattan.bravebrowser
   
 # Tasks to complete before running roles
 #- hosts: all
