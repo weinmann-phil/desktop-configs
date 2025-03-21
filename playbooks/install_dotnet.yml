@@ -24,6 +24,6 @@
 
 - name: Add user to dotnet group
   user:
-    name: {{ host_username.stdout }} 
+    name: "{{ host_username.stdout }}"
     
 
