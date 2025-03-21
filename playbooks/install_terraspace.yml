@@ -28,4 +28,4 @@
 
 - name: Add user to Terraspace group
   user:
-    name: {{ host_username.stdout }}
+    name: "{{ host_username.stdout }}"
