@@ -15,6 +15,7 @@
       - gnupg
       - gpp
       - htop
+      - openjdk-21-jdk
       - mysql-client
       - neovim
       - netcat-traditional
