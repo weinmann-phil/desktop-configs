@@ -7,20 +7,20 @@
     group: root
 
 - name: Set wallpaper
-  become_user: mnv1c
+  become_user: {{ host_username.stdout }}
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/stars-wallpaper.png'"
 
 - name: Position Wallpaper
-  become_user: mnv1c
+  become_user: {{ host_username.stdout }}
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
 
 # Set screensaver defintions
 - name: Set screensaver after 900 seconds
-  become_user: mnv1c
+  become_user: {{ host_username.stdout }}
   community.general.dconf:
     key: "/org/gnome/desktop/session/idle-delay"
     value: 900
@@ -28,7 +28,7 @@
 
 # Set the icon size within Dock
 - name: Define icon size of dock
-  become_user: mnv1c
+  become_user: {{ host_username.stdout }}
   community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size"
     value: 20
