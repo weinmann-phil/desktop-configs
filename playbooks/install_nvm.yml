@@ -1,4 +1,4 @@
-- nam:: Install Nome Version Manager 
+- name: Install Nome Version Manager 
   shell: >
     curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
     creates=/home/{{ host_username.stdout }}/.nvm/nvm.sh
