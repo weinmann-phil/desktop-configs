@@ -1,0 +1,4 @@
+# Install Brave Browser
+- name: Install Brave Browser
+  shell: >
+    curl -fsS https://dl.brave.com/install.sh | sh

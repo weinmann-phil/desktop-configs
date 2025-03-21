@@ -90,9 +90,12 @@
     tags: always
     when: 
       - ansible_distribution in ["Debian", "Ubuntu"]
-
-  roles:
-    - professormanhattan.bravebrowser
+ 
+  - name: Install Brave Browser
+    include_tasks: playbooks/install_brave.yml
+    tags: always
+    when:
+      - ansible_distribution in ["Debian", "Ubuntu"]
   
 # Tasks to complete before running roles
 #- hosts: all
