@@ -27,4 +27,5 @@
       - software-properties-common
       - tree
       - virtualenv
+      - zsh
 
