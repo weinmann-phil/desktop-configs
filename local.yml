@@ -18,7 +18,6 @@
   - name: Install APT Packages
     include_tasks: playbooks/install_apt_packages.yml
     tags: always
-    become_user: mnv1c
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
