@@ -2,7 +2,6 @@
 - hosts: localhost
   tags: always
   become: true
-  become_user: mnv1c
   vars:
     arch_mapping: # Map ansible architecture {{ ansible_architecture }} names to Docker's architecture names
       x86_64: amd64
@@ -14,7 +13,6 @@
       update_cache: true
       upgrade: dist
       cache_valid_time: 3600
-    become_method: sudo
 
   # Install APT Packages
   - name: Install APT Packages
