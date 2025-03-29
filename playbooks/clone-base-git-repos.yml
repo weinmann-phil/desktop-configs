@@ -1,6 +1,34 @@
 - name: Checkout NeoVim Base IDE
   ansible.builtin.git:
     repo: 'https://github.com/weinmann-phil/base-setup.nvim.git'
-    dest: /home/mnv1c/.config/nvim
+    dest: "/home/{{ host_username.stdout }}/.config/nvim"
     version: main
 
+- name: Install Alire for Language Server Support
+  ansible.builtin.git:
+    repo: 'https://github.com/alire-project/alire.git'
+    dest: "/home/{{ host_username.stdout }}/.config/alire"
+    version: master
+    track_submodules: true
+
+- name: Build Alire CLI
+  ansible.builtin.shell: "/home/{{ host_username.stdout }}/.config/alire/dev/build.sh"
+
+- name: CHeck if Alire Binaries Exist
+  ansible.builtin.stat:
+    path: "/home/{{ host_username.stdout }}/.config/alire/bin/alr"
+  register: source_file_stat
+
+- name: Move binaries to /usr/bin/
+  ansible.builtin.copy:
+    src: "/home/{{ host_username.stdout }}/.config/alire/bin/alr"
+    dest: "/usr/bin"
+  when: source_file_stat.exists
+
+- name: Remove Binary Source File
+  ansible.builtin.file:
+    path: "/home/{{ host_username.stdout }}/.config/alire/bin/alr"
+    state: absent
+  when: source_file_stat.exists
+
+    
