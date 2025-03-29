@@ -18,6 +18,18 @@
     # track_submodules: true
     force: yes
 
+- name: Ensure bin folder exists within Alire Config
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.config/alire/bin"
+  register: bin_folder
+
+- name: Create bin Directory for Alire
+  ansible.builtin.file:
+    path: "/home/{{ local_user.stdout }}/.config/alire/bin"
+    state: directory
+    mode: 0755
+  when: not bin_folder.stat.exists
+
 - name: Build Alire CLI
   ansible.builtin.script: "/home/{{ local_user.stdout }}/.config/alire/dev/build.sh"
   args:
