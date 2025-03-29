@@ -10,6 +10,12 @@
     dest: "/home/{{ local_user.stdout }}/.config/nvim"
     version: main
 
+- name: Checkout Dotfiles
+  ansible.builtin.git:
+    repo: 'https://github.com/weinmann-phil/dotfiles.git'
+    dest: "/home/{{ local_user.stdout }}/git/dotfiles"
+    version: main
+
 - name: Install Alire for Language Server Support
   ansible.builtin.git:
     repo: 'https://github.com/alire-project/alire.git'
