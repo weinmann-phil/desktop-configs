@@ -37,4 +37,4 @@
       - zsh
     become: yes
     become_method: sudo
-    become_user: "{{ local_user.std }}"
+    become_user: "{{ local_user.stdout }}"
