@@ -46,8 +46,6 @@
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
-  become: yes
-  become_user: "{{ local_user.stdout }}"
 
 - name: Add Docker group
   ansible.builtin.group:

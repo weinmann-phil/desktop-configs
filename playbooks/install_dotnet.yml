@@ -29,8 +29,6 @@
     name: dotnet-sdk-9.0
     state: present
     update_cache: true
-  become: yes
-  become_user: "{{ local_user.stdout }}"
 
 - name: Add dotnet group
   ansible.builtin.group:
