@@ -34,21 +34,14 @@
   ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/alire/dev/build.sh"
   delegate_to: localhost
 
-- name: CHeck if Alire Binaries Exist
-  ansible.builtin.stat:
-    path: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
-  register: source_file_stat
-
 - name: Move binaries to usr bin directory
   ansible.builtin.copy:
     src: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
     dest: "/usr/bin"
-  when: source_file_stat.exists
 
 - name: Remove Binary Source File
   ansible.builtin.file:
     path: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
     state: absent
-  when: source_file_stat.exists
 
     
