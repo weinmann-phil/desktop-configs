@@ -19,7 +19,6 @@
     include_tasks: playbooks/install_apt_packages.yml
     tags: always
     become_user: mnv1c
-    become_method: sudo
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
