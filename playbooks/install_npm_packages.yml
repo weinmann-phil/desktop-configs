@@ -1,0 +1,5 @@
+# Install packages by using NPM
+- name: Install NVim-Treesitter CLI with NPM
+  community.general.npm:
+    name: tree-sitter-cli
+

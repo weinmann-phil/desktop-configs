@@ -39,7 +39,7 @@
 
 - name: Add user to Docker group
   user:
-    name: mnv1c
+    name: {{ host_username.stdout }}
 
 - name: Enable and start Docker services
   systemd:

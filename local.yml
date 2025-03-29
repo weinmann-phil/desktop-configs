@@ -90,7 +90,12 @@
     tags: always
     when: 
       - ansible_distribution in ["Debian", "Ubuntu"]
- 
+  
+  # Install NPM packages
+  - name: Install NPM packages
+    include_task: playbooks/install_npm_packages.yml
+    tags: always
+
 # Tasks to complete before running roles
 #- hosts: all
 #  tags: always
