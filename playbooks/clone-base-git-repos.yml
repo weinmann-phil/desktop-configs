@@ -37,11 +37,86 @@
   with_fileglob:
     - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/bash/*"
 
+- name: "Ensure GIT Config Folder Exists"
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.config/git"
+  register: git_folder
+
+- name: Create GIT Config Folder
+  ansible.builtin.file:
+    path: "/home/{{ local_user.stdout }}/.config/git"
+    state: directory
+    mode: 0755
+  when: not git_folder.stat.exists
+
+- name: "Copy Git Config File to .config/git"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ local_user.stdout }}/.config/git/"
+    owner: "{{ local_user.stdout }}"
+    mode: 0777
+  with_fileglob:
+    - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/git/*"
+
+- name: "Ensure KUBERNETES Config Folder Exists"
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.config/kubernetes"
+  register: k8s_folder
+
+- name: Create Kubernetes Config Folder
+  ansible.builtin.file:
+    path: "/home/{{ local_user.stdout }}/.config/kubernetes"
+    state: directory
+    mode: 0755
+  when: not k8s_folder.stat.exists
+
+- name: "Copy Kubernetes Config Folder to .config/kubernetes"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ local_user.stdout }}/.config/kubernetes"
+    owner: "{{ local_user.stdout }}"
+    mode: 0777
+  with_fileglob:
+    - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/kubernetes/*"
+
+- name: Ensure AZURE Config Folder Exists
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.config/azure"
+  register: azure_folder
+
+- name: Create Azure Config Folder
+  ansible.builtin.file:
+    path: "/home/{{ local_user.stdout }}/.config/azure"
+    state: directory
+    mode: 0755
+  when: not azure_folder.stat.exists
+
+- name: "Copy Azure Config Files to .config/azure"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ local_user.stdout }}/.config/azure"
+    owner: "{{ local_user.stdout }}"
+    mode: 0777
+  with_fileglob:
+    - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/azure/*"
+
+# Powerlevel10k
+- name: Clone Power10k Themes 
+  ansible.builtin.git:
+    repo: 'https://github.com/romkatv/powerlevel10k.git'
+    dest: "/home/{{ local_user.stdout }}/.oh-my-zsh/themes/powerlevel10k"
+
+# ZSH Configs
+- name: Backup of previous .zshrc
+  ansible.builtin.copy:
+    src: "/home/{{ local_user.stdout }}/.zshrc"
+    dest: "/home/{{ local_user.stdout }}/.config/bak/{{ ansible_date_time.date }}_zshrc.bak"
+    owner: "{{ local_user.stdout }}"
 
 - name: Setup ZSH Environments
   ansible.builtin.copy:
-    src: "/home/{{ local_user.stdout }}/.config/dotfiles/"
-    
+    src: "/home/{{ local_user.stdout }}/.config/dotfiles/src/zshrc/aliases.zsh"
+    dest: "/home/{{ local_user.stdout }}/.zshrc"
 
 - name: Install Alire for Language Server Support
   ansible.builtin.git:
