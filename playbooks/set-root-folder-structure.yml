@@ -5,11 +5,29 @@
   become_user: mnv1c
   register: local_user
 
+- name: Ensure git directory exists
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/git/weinmann-phil
+  register: git_folder 
+
 - name: Create git directory
   ansible.builtin.file:
     path: /home/{{ local_user.stdout }}/git/weinmann-phil
     state: directory
-    mode: '0755'
+    mode: 0755
+  when: not git_folder.stat.exists
+
+- name: Ensure config backup folder exists
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/.config/bak
+  register: bak_folder
+
+- name: Create config backup folder
+  ansible.builtin.file:
+    path: /home/{{ local_user.stdout }}/.config/bak
+    state: directory
+    mode: 0755
+  when: not bak_folder.stat.exists
 
 # Create subfolders for ~/Documents
 #- name: Create
