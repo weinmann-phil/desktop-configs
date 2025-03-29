@@ -2,4 +2,6 @@
 - name: Install NVim-Treesitter CLI with NPM
   community.general.npm:
     name: tree-sitter-cli
-
+    global: yes
+  environment:
+    PATH: '{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.npm-global/bin'
