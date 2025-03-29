@@ -57,7 +57,7 @@
     mode: '0755'
 
 - name: Disable Dependency Sharing in Alire
-  ansible.builtin.command: alr settings --global --set dependencies.shared false
+  ansible.builtin.command: 'alr settings --global --set dependencies.shared false --builtin'
   delegate_to: localhost
 
 - name: Clone ADA Language Server Repository
