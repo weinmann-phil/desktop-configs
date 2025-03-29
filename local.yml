@@ -93,7 +93,7 @@
   
   # Install NPM packages
   - name: Install NPM packages
-    include_task: playbooks/install_npm_packages.yml
+    include_tasks: playbooks/install_npm_packages.yml
     tags: always
 
 # Tasks to complete before running roles
