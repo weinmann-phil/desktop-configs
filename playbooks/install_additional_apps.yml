@@ -13,3 +13,6 @@
 - name: Install OH-MY-ZSH
   ansible.builtin.shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   when: not zsh_base.stat.exists
+  become: yes
+  become_user: "{{ local_user.stdout }}"
+  become_method: sudo
