@@ -1,5 +1,7 @@
 - name: Whoami
   ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
   register: local_user
 
 - name: Checkout NeoVim Base IDE
