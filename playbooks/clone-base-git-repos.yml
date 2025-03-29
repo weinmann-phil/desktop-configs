@@ -39,7 +39,7 @@
     path: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
   register: source_file_stat
 
-- name: Move binaries to /usr/bin/
+- name: Move binaries to "/usr/bin" 
   ansible.builtin.copy:
     src: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
     dest: "/usr/bin"
