@@ -1,13 +1,28 @@
+# Install Azure CLI
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
+- name: Ensure keyrings Directory Exists
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings
+  register: keyrings_folder
+
 - name: Create directory for Azure CLI's GPG key
-  file:
+  ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
     mode: 0755
+  when: not keyrings_folder.stat.exists
 
 - name: Download Microsoft GPG key
   ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/keyrings/microsoft.asc
+  become: yes
+  become_user: "{{ local_user.stdout }}"
 
 - name: Add Azure CLI GPG apt KEY
   ansible.builtin.apt_key:
@@ -15,29 +30,31 @@
     state: present
 
 - name: Print architecture variables
-  debug:
+  ansible.builtin.debug:
     msg: "Architecture: {{ ansible_architecture }}, Codename: {{ ansible_lsb.codename }}"
 
 - name: Add Microsoft Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch={{ arch_mapping[ansible_architecture] | default(ansible_lsb.codename) }} signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_lsb.codename }} main
     filename: azure-cli
     state: present
 
 - name: Update apt and install docker-ce
-  apt:
+  ansible.builtin.apt:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop:
     - azure-cli
+  become: yes
+  become_user: "{{ local_user.stdout }}"
 
 - name: Add Azure group
-  group:
+  ansible.builtin.group:
     name: az
     state: present
 
 - name: Add user to Azure group
-  user:
-    name: mnv1c
+  ansible.builtin.user:
+    name: "{{ local_user.stdout }}"
 

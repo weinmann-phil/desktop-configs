@@ -1,4 +1,13 @@
-- name: Install Nome Version Manager 
-  shell: >
+# Instal Additional Node Packages
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
+- name: Install Node Version Manager 
+  ansible.builtin.shell: >
     curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
-    creates=/home/{{ host_username.stdout }}/.nvm/nvm.sh
+    creates=/home/{{ local_user.stdout }}/.nvm/nvm.sh
+  become: yes
+  become_user: "{{ local_user.stdout }}"

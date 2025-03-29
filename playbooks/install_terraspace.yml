@@ -1,31 +1,40 @@
+# Install Terraspace
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
 - name: Create directory for Terraspace's GPG
-  file:
+  ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
 
 - name: Add APT signing key from URL
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://apt.boltops.com/boltops-key.public
     state: present
 
 - name: Add Terraspace Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb https://apt.boltops.com stable main
     filename: boltops
     state: present
 
 - name: Update apt and install Terraspace
-  apt:
+  ansible.builtin.apt:
     name: terraspace
     state: present
     update_cache: true
+  become: true
+  become_user: "{{ local_user.stdout }}"
 
 - name: Add Terraspace Group
-  group:
+  ansible.builtin.group:
     name: terraspace
     state: present
 
 - name: Add user to Terraspace group
-  user:
-    name: "{{ host_username.stdout }}"
+  ansible.builtin.user:
+    name: "{{ local_user.stdout }}"

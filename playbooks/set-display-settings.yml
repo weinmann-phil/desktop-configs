@@ -1,26 +1,32 @@
 # Set wallpaper
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
 - name: Copy Wallpaper File
-  copy:
+  ansible.builtin.copy:
     src: imgs/stars-wallpaper.png
     dest: /usr/share/backgrounds/stars-wallpaper.png
     owner: root
     group: root
 
 - name: Set wallpaper
-  become_user: mnv1c
-  dconf:
+  become_user: "{{ local_user.stdout }}"
+  community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/stars-wallpaper.png'"
 
 - name: Position Wallpaper
-  become_user: "{{ host_username.stdout }}"
+  become_user: "{{ local_user.stdout }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
 
 # Set screensaver defintions
 - name: Set screensaver after 900 seconds
-  become_user: "{{ host_username.stdout }}"
+  become_user: "{{ local_user.stdout }}"
   community.general.dconf:
     key: "/org/gnome/desktop/session/idle-delay"
     value: 900
@@ -28,7 +34,7 @@
 
 # Set the icon size within Dock
 - name: Define icon size of dock
-  become_user: "{{ host_username.stdout }}"
+  become_user: "{{ local_user.stdout }}"
   community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size"
     value: 20

@@ -1,4 +1,15 @@
 # Install applications and resources without git or package managers
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
+- name: Ensure ZSH folder exists
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.oh-my-zsh"
+  register: zsh_base
+
 - name: Install OH-MY-ZSH
   ansible.builtin.shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  
+  when: not zsh_base.stat.exists

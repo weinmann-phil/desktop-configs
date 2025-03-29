@@ -1,7 +1,13 @@
 # Create folders for development
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
 - name: Create git directory
   ansible.builtin.file:
-    path: /home/{{ host_username.stdout }}/git/weinmann-phil
+    path: /home/{{ local_user.stdout }}/git/weinmann-phil
     state: directory
     mode: '0755'
 

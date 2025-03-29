@@ -1,29 +1,43 @@
 # Install DotNet
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
+- name: Ensure keyrings Directory Exists
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings
+  register: keyrings_folder
+
 - name: Create direcoty for Docker's GPG key
-  file:
+  ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '0755'
+    mode: 0755
+  become_user: "{{ local_user.stdout }}"
+  when: not keyrings_folder.stat.exists
 
 - name: Add DotNet GPG key
-  apt_repository:
+  ansible.builtin.apt_repository:
     validate_certs: no
     repo: ppa:dotnet/backports
     state: present
 
 - name: Update apt and Install DotNet
-  apt:
+  ansible.builtin.apt:
     name: dotnet-sdk-9.0
     state: present
     update_cache: true
+  become: yes
+  become_user: "{{ local_user.stdout }}"
 
 - name: Add dotnet group
-  group:
+  ansible.builtin.group:
     name: dotnet
     state: present
 
 - name: Add user to dotnet group
   user:
-    name: "{{ host_username.stdout }}"
-    
+    name: "{{ local_user.stdout }}"
 

@@ -1,3 +1,10 @@
+# Install APT Packages
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
+
 - name: Install system and application packages with APT
   ansible.builtin.apt:
     pkg: 
@@ -28,4 +35,6 @@
       - tree
       - virtualenv
       - zsh
+    become: yes
+    become_user: "{{ local_user.stdout }}"
 

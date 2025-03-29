@@ -1,20 +1,29 @@
 # GENERAL DEPENDENCIES
-- name: Get the username running the playbook
-  become: false
-  command: whoami
-  register: host_username
+- name: Whoami
+  ansible.builtin.command: whoami
+  become: yes
+  become_user: mnv1c
+  register: local_user
 
+# - name: Get the username running the playbook
+#   become: false
+#   command: whoami
+#   register: host_username
+#
 - name: Get the default profile ID of GNOME Terminal
-  command: gsettings get org.gnome.Terminal.ProfilesList default
+  ansible.builtin.command: gsettings get org.gnome.Terminal.ProfilesList default
+  delegate_to: localhost
+  become: yes
+  become_user: "{{ local_user.stdout }}"
   register: profile_id_output
 
 - name: Check value profile_id_output
-  debug:
+  ansible.builtin.debug:
     msg: "GNOME Terminal Default ID: {{ profile_id_output.stdout }}" 
 
 - name: Check value host_username
-  debug:
-    msg: "Current User: {{ host_username.stdout }}"
+  ansible.builtin.debug:
+    msg: "Current User: {{ local_user.stdout }}"
 
 # GNOME TERMINAL SETTINGS
 - name: Turn audible bell off
@@ -290,6 +299,6 @@
 - name: Define Terminal Visible Name
   community.general.dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:{{ profile_id_output.stdout }}/visible-name"
-    value: "'{{ host_username.stdout }}'"
+    value: "'{{ local_user.stdout }}'"
     state: present
  
