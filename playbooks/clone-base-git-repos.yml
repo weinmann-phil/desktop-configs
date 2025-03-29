@@ -9,7 +9,7 @@
     repo: 'https://github.com/alire-project/alire.git'
     dest: "/home/{{ host_username.stdout }}/.config/alire"
     version: master
-    track_submodules: true
+    # track_submodules: true
     force: yes
 
 - name: Build Alire CLI
