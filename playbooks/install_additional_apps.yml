@@ -1,0 +1,4 @@
+# Install applications and resources without git or package managers
+- name: Install OH-MY-ZSH
+  ansible.builtin.command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  delegate_to: localhost

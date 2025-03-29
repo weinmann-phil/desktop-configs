@@ -84,6 +84,11 @@
     when:
       - ansible_distribution in ["Debian", "Ubuntu"]
 
+  # Install direct apps
+  - name: Instal Applications and Resources Directly
+    include_tasks: playbooks/install_additional_apps.yml
+    tags: always
+
   # Clone GIT Repos with further base configurations
   - name: Clone GIT Repos with additional configurations
     include_tasks: playbooks/clone-base-git-repos.yml
