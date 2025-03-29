@@ -10,10 +10,11 @@
 
   tasks:
   - name: Update and upgrade all packages to the latest version
-    apt:
+    ansible.builtin.apt:
       update_cache: true
       upgrade: dist
       cache_valid_time: 3600
+    become_method: sudo
 
   # Install APT Packages
   - name: Install APT Packages
