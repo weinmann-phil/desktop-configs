@@ -49,4 +49,19 @@
     path: "/usr/bin/alr"
     owner: "{{ local_user.stdout }}"
     mode: '0755'
-    
+
+- name: Disable Dependency Sharing in Alire
+  ansible.builtin.command: alr settings --global --set dependencies.shared false
+  delegate_to: localhost
+
+- name: Clone ADA Language Server Repository
+  ansible.builtin.git:
+    repo: 'https://github.com/AdaCore/ada_language_server.git'
+    dest: "/home/{{ local_user.stdout }}/.config/ada_language_server"
+    version: edge
+    force: yes
+
+- name: Run Install Script
+  ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/ada_language_server/scripts/build_als.sh"
+  delegate_to: localhost
+
