@@ -10,6 +10,7 @@
     dest: "/home/{{ host_username.stdout }}/.config/alire"
     version: master
     track_submodules: true
+    force: yes
 
 - name: Build Alire CLI
   ansible.builtin.shell: "/home/{{ host_username.stdout }}/.config/alire/dev/build.sh"
