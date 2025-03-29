@@ -44,4 +44,9 @@
     path: "/home/{{ local_user.stdout }}/.config/alire/bin/alr"
     state: absent
 
+- name: chmod +x ALR executable
+  ansible.builtin.file:
+    path: "/usr/bin/alr"
+    owner: "{{ local_user.stdout }}"
+    mode: '0755'
     
