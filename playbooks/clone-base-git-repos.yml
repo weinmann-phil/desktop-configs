@@ -31,10 +31,8 @@
   when: not bin_folder.stat.exists
 
 - name: Build Alire CLI
-  ansible.builtin.script: "/home/{{ local_user.stdout }}/.config/alire/dev/build.sh"
-  args:
-    chdir: "/home/{{ local_user.stdout }}/.config/alire"
-    executable: /bin/bash
+  ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/alire/dev/build.sh"
+  delegate_to: localhost
 
 - name: CHeck if Alire Binaries Exist
   ansible.builtin.stat:
