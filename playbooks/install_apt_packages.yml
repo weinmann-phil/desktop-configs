@@ -15,6 +15,7 @@
       - gnat-13
       - gnupg
       - gpp
+      - gprbuild
       - htop
       - openjdk-21-jdk
       - mysql-client
