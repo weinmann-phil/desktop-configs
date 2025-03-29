@@ -13,7 +13,7 @@
 - name: Checkout Dotfiles
   ansible.builtin.git:
     repo: 'https://github.com/weinmann-phil/dotfiles.git'
-    dest: "/home/{{ local_user.stdout }}/git/dotfiles"
+    dest: "/home/{{ local_user.stdout }}/.config/dotfiles"
     version: main
 
 - name: Install Alire for Language Server Support
