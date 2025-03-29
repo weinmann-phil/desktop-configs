@@ -12,6 +12,7 @@
       - dotnet-runtime-8.0
       - dotnet-sdk-8.0
       #- fastfetch
+      - gnat-13
       - gnupg
       - gpp
       - htop
