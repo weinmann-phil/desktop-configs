@@ -16,6 +16,33 @@
     dest: "/home/{{ local_user.stdout }}/.config/dotfiles"
     version: main
 
+- name: Ensure BASH Config Folder Exists
+  ansible.builtin.stat:
+    path: "/home/{{ local_user.stdout }}/.config/bash"
+  register: bash_folder
+
+- name: Create BASH Config Folder
+  ansible.builtin.file:
+    path: "/home/{{ local_user.stdout }}/.config/bash"
+    state: directory
+    mode: 0755
+  when: not bash_folder.stat.exists
+
+- name: "Copy Bash Config Scripts to .config/bash"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ local_user.stdout }}/.config/bash/"
+    owner: "{{ local_user.stdout }}"
+    mode: 0777
+  with_fileglob:
+    - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/bash/*"
+
+
+- name: Setup ZSH Environments
+  ansible.builtin.copy:
+    src: "/home/{{ local_user.stdout }}/.config/dotfiles/"
+    
+
 - name: Install Alire for Language Server Support
   ansible.builtin.git:
     repo: 'https://github.com/alire-project/alire.git'
