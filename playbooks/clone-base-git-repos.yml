@@ -171,6 +171,26 @@
     version: master
     force: yes
 
+- name: Ensure Nerd Fonts Exists
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/.config/nerd-fonts
+  register: nerd_fonts_folder
+
+- name: Get Nerd Fonts
+  ansible.builtin.git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    dest: /home/{{ local_user.stdout }}/.config/nerd-fonts
+    version: master
+    depth: 1
+    force: yes
+  when: not nerd_fonts_folder.stat.exists
+
+- name: Install Nerd Fonts
+  ansible.builtin.command: '/home/{{ local_user.stdout }}/.config/nerd-fonts/install.sh Hack'
+  delegate_to: localhost
+  become: yes
+  become_user: "{{ local_user.stdout }}"
+
 # Powerlevel10k
 - name: Clone Power10k Themes 
   ansible.builtin.git:
