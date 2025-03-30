@@ -162,7 +162,7 @@
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "/home/{{ local_user.stdout }}/.oh-my-zsh/plugins/zsh-autosuggestions"
     version: master
-    force: yescd
+    force: yes
 
 - name: Install ZSH Syntax Highlighting
   ansible.builtin.git:
