@@ -37,7 +37,7 @@
       - zsh
 
 - name: Set ZSH as Main Terminal
-  ansible.builtin.command: "chsh -s $(which zsh)"
+  ansible.builtin.command: "chsh -s /usr/bin/zsh"
   delegate_to: localhost
   become: yes
   become_user: "{{ local_user.stdout }}"
