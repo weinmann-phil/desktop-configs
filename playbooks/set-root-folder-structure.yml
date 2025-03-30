@@ -29,5 +29,16 @@
     mode: 0755
   when: not bak_folder.stat.exists
 
+- name: Ensure Fonts Folder Exists
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/.local/share/fonts
+  register: fonts_folder
+
+- name: Create Fonts Folder
+  ansible.builtin.file:
+    path: /home/{{ local_user.stdout }}/.local/share/fonts
+    state: directory
+    mode: 0755
+  when: not fonts_folder.stat.exists
 # Create subfolders for ~/Documents
 #- name: Create
