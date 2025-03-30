@@ -101,12 +101,6 @@
   with_fileglob:
     - "/home/{{ local_user.stdout }}/.config/dotfiles/scripts/azure/*"
 
-# Powerlevel10k
-- name: Clone Power10k Themes 
-  ansible.builtin.git:
-    repo: 'https://github.com/romkatv/powerlevel10k.git'
-    dest: "/home/{{ local_user.stdout }}/.oh-my-zsh/themes/powerlevel10k"
-
 # ZSH Configs
 - name: Backup of previous .zshrc
   ansible.builtin.copy:
@@ -162,6 +156,25 @@
 - name: Disable Dependency Sharing in Alire
   ansible.builtin.command: 'alr settings --global --set dependencies.shared false --builtin'
   delegate_to: localhost
+
+- name: Install ZSH Autosuggestion Plugin
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/{{ local_user.stdout }}/.oh-my-zsh/plugins/zsh-autosuggestions
+    version: master
+
+- name: Install ZSH Syntax Highlighting
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: /home/{{ local_user.stdout }}/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    version: master
+
+# Powerlevel10k
+- name: Clone Power10k Themes 
+  ansible.builtin.git:
+    repo: 'https://github.com/romkatv/powerlevel10k.git'
+    dest: "/home/{{ local_user.stdout }}/.oh-my-zsh/themes/powerlevel10k"
+
 
 # - name: Clone ADA Language Server Repository
 #   ansible.builtin.git:
