@@ -29,4 +29,4 @@
 - name: Extract ADA Language Server
   ansible.builtin.unarchive:
     src: /home/{{ local_user.stdout }}/Downloads/als-linux-x64.tar.gz
-    dest: /home/{{ local_user.stdout }}/Downloads/als_ls
+    dest: /home/{{ local_user.stdout }}/Downloads
