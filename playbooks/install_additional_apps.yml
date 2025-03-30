@@ -40,5 +40,20 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
+    recurse: yes
   with_fileglob:
     - "/home/{{ local_user.stdout }}/Downloads/*"
+
+- name: Ensure Hack Fonts Exist
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/.local/share/fonts/HackNerdFont-Regular.ttf
+  register: nerd_font
+
+- name: Download Hack Nerd Fonts
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/HackNerdFont-Regular.ttf
+    dest: /home/{{ local_user.stdout }}/.local/share/fonts/HackNerdFont-Regular.ttf
+    owner: "{{ local_user.stdout }}"
+    mode: 0755
+  when: not nerd_font.stat.exists
+
