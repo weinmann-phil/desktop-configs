@@ -30,3 +30,15 @@
   ansible.builtin.unarchive:
     src: /home/{{ local_user.stdout }}/Downloads/als-linux-x64.tar.gz
     dest: /home/{{ local_user.stdout }}/Downloads
+
+- name: "Move ADA Language Server binary to /user/bin"
+  ansible.builtin.copy:
+    src: /home/{{ local_user.stdout }}/Downloads/integration/vscode/ada/x64/linux/ada_language_server
+    dest: /usr/bin
+
+- name: Clean Download Folder
+  ansible.builtin.file:
+    path: {{ item }}
+    state: absent
+  with_fileglob:
+    - "/home/{{ local_user.stdout }}/Downloads/*"
