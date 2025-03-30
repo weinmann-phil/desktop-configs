@@ -35,3 +35,8 @@
       - tree
       - virtualenv
       - zsh
+
+- name: Set ZSH as Main Terminal
+  ansible.builtin.command: "chsh -s $(which zsh)"
+  delegate_to: localhost
+
