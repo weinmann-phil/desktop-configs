@@ -170,6 +170,6 @@
     force: yes
 
 - name: Run Install Script
-  ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/ada_language_server/scripts/build_als.sh"
+  ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/ada_language_server/scripts/build_als.sh all 24.0.999 x64/linux"
   delegate_to: localhost
 
