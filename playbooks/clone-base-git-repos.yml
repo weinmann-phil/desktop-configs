@@ -9,6 +9,7 @@
     repo: 'https://github.com/weinmann-phil/base-setup.nvim.git'
     dest: "/home/{{ local_user.stdout }}/.config/nvim"
     version: main
+    force: yes
 
 - name: Checkout Dotfiles
   ansible.builtin.git:
