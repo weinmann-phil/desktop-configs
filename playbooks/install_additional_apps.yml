@@ -36,13 +36,25 @@
     src: /home/{{ local_user.stdout }}/Downloads/integration/vscode/ada/x64/linux/ada_language_server
     dest: /usr/bin
 
-- name: Clean Download Folder
+- name: Ensure ADA Language Server Exists
+  ansible.builtin.stat:
+    path: /usr/bin/ada_language_server
+  register: adals
+
+- name: Clean Download Folder From Files
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
-    recurse: yes
   with_fileglob:
     - "/home/{{ local_user.stdout }}/Downloads/*"
+  when: not adals.stat.exists
+
+- name: Remove ADA folder
+  ansible.builtin.file:
+    path: /home/{{ local_user.stdout }}/Downloads/integration
+    state: absent
+    recurse: yes
+  when: not adals.stat.exists
 
 - name: Ensure Hack Fonts Exist
   ansible.builtin.stat:
