@@ -41,3 +41,4 @@
   delegate_to: localhost
   become: yes
   become_user: "{{ local_user.stdout }}"
+  become_method: sudo
