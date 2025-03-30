@@ -159,10 +159,10 @@
 
 - name: Install ZSH Autosuggestion Plugin
   ansible.builtin.git:
-    repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: /home/{{ local_user.stdout }}/.oh-my-zsh/plugins/zsh-autosuggestions
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "/home/{{ local_user.stdout }}/.oh-my-zsh/plugins/zsh-autosuggestions"
     version: master
-    force: yes
+    force: yescd
 
 - name: Install ZSH Syntax Highlighting
   ansible.builtin.git:

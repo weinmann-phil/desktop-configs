@@ -17,7 +17,6 @@
   become_user: "{{ local_user.stdout }}"
   become_method: sudo
 
-
 # https://github.com/AdaCore/ada_language_server/releases/download/26.0.202502240/als-26.0.202502240-linux-x64.tar.gz 
 - name: Download ADA Language Server
   ansible.builtin.get_url:
@@ -69,3 +68,8 @@
     mode: 0755
   when: not nerd_font.stat.exists
 
+- name: Refresh Font Cache
+  ansible.builtin.command: 'fc-cache -fv'
+  delegate_to: localhost
+  become: yes
+  become_user: "{{ local_user.stdout }}"
