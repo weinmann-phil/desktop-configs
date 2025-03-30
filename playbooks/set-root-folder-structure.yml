@@ -14,6 +14,7 @@
   ansible.builtin.file:
     path: /home/{{ local_user.stdout }}/git/weinmann-phil
     state: directory
+    owner: "{{ local_user.stdout }}"
     mode: 0755
   when: not git_folder.stat.exists
 
@@ -26,6 +27,7 @@
   ansible.builtin.file:
     path: /home/{{ local_user.stdout }}/.config/bak
     state: directory
+    owner: "{{ local_user.stdout }}"
     mode: 0755
   when: not bak_folder.stat.exists
 
@@ -38,7 +40,22 @@
   ansible.builtin.file:
     path: /home/{{ local_user.stdout }}/.local/share/fonts
     state: directory
+    owner: "{{ local_user.stdout }}"
     mode: 0755
   when: not fonts_folder.stat.exists
+
+- name: Ensure Nerd Fonts Folder Exists
+  ansible.builtin.stat:
+    path: /home/{{ local_user.stdout }}/.local/share/fonts
+  register: nerd_fonts_folder
+
+- name: Create Fonts Folder
+  ansible.builtin.file:
+    path: /home/{{ local_user.stdout }}/.local/share/fonts/NerdFonts
+    state: directory
+    owner: "{{ local_user.stdout }}"
+    mode: 0755
+  when: not fonts_folder.stat.exists
+
 # Create subfolders for ~/Documents
 #- name: Create
