@@ -27,6 +27,6 @@
     mode: '0755'
 
 - name: Extract ADA Language Server
-  ansible.builtin.unarchice:
+  ansible.builtin.unarchive:
     src: /home/{{ local_user.stdout }}/Downloads/als-linux-x64.tar.gz
     dest: /home/{{ local_user.stdout }}/Downloads/als_ls
