@@ -169,7 +169,7 @@
     version: edge
     force: yes
 
-# - name: Run Install Script
-#   ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/ada_language_server/scripts/build_als.sh"
-#   delegate_to: localhost
+- name: Run Install Script
+  ansible.builtin.command: "/home/{{ local_user.stdout }}/.config/ada_language_server/scripts/build_als.sh"
+  delegate_to: localhost
 
