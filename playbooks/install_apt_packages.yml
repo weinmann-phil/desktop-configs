@@ -25,6 +25,7 @@
       - gprbuild
       - htop
       - openjdk-21-jdk
+      - maven
       - mysql-client
       - neovim
       - netcat-traditional
