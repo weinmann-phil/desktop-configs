@@ -78,3 +78,12 @@
   ansible.builtin.shell: "curl -fsS https://dl.brave.com/install.sh | sh"
   become: yes
   become_user: "{{ local_user.stdout }}"
+
+- name: Get Minikube
+  ansible.builtin.get_url: 
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    owner: "{{ local_user.stdout }}"
+    mode: 0755
+  delegate_to: localhost
+    
