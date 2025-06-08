@@ -1,0 +1,93 @@
+#SPDX-License-Identifier: MIT-0
+---
+# folder structure for roles/home_configuration
+
+# Base Configuration
+- name: Ensure bak Folder Existis within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/bak
+  register: config_bak_folder
+
+- name: Ensure git Folder Exists
+  ansible.builtin.stat:
+    path: /home/{{ user }}/git
+  register: git_folder
+
+- name: Ensure fonts Folder Exists within .local/share
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.local/share/fonts
+  register: fonts_folder
+
+- name: Create bak Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/bak
+    state: directory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: config_bak_folder.stat.exists
+
+- name: Create git Folder within /home/{{ user }}
+  ansible.builtin.file:
+    path: /home/{{ user }}/git
+    state: directory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: git_folder.stat.exists
+
+- name: Create fonts Folder within /home/{{ user }}/.local/share
+  ansible.builtin.file:
+    path: /home/{{ user }}/.local/share
+    state: diretctory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: fonts_folder.stat.exists
+
+# Create the folder structure for ~/Documents/
+- name: Ensure ac Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/ac
+  register: ac_folder
+
+- name: Ensure fin Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/fin
+  register: fin_folder
+
+- name: Ensure tech Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/tech
+  register: tech_folder
+
+- name: Create ac Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/ac
+    state: directory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: ac_folder.stat.exists
+
+- name: Create fin Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/fin
+    state: directory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: fin_folder.stat.exists
+
+- name: Create tech Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/tech
+    state: directory
+    user: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  when: tech_folder.stat.exists
+
+# Create the folder structure for ~/Pictures/
+
+

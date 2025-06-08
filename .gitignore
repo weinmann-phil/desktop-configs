@@ -67,3 +67,5 @@ $RECYCLE.BIN/
   "status": "404"
 }
 *.retry
+
+**/bak/

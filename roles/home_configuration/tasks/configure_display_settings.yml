@@ -1,0 +1,40 @@
+#SPDX-License-Identifier: MIT-0
+---
+# folder structure for roles/home_configuration
+
+- name: Ensure Wallpaper Exists
+  ansible.builtin.stat:
+    path: /usr/share/backgrounds/stars-wallpaper.png
+  register: wallpaper
+
+- name: Copy Wallpaper File
+  ansible.builtin.copy:
+    src: stars-wallpaper.png
+    dest: /usr/share/backgrounds/stars-wallpaper.png
+    owner: root
+    group: root
+  when: wallpaper.stat.exists
+
+- name: Set Wallpaper
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-uri
+    value: "'file:///usr/share/backgrounds/stars-wallpaper.png'"
+
+- name: Position Wallpaper
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-options
+    value: "'zoom'"
+
+# Define Screensaver Options
+- name: Set Screensaver After 900 Seconds
+  community.general.dconf:
+    key: /org/gnome/desktop/session/idle-delay
+    value: "900"
+
+# Set the Icon Size within Dock
+- name: Define Icon Size of Dock
+  community.general.dconf:
+    key: /org/gnome/shell/exentsions/dash-to-dock/dash-max-icon-size
+    value: "20"
+
+

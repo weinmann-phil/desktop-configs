@@ -8,6 +8,15 @@
       aarch64: arm64
 
   tasks:
+  - name: Get System Environment User
+    ansible.builtin.command: whoami
+    register: system_user 
+
+  - name: Configure Home Environment
+    include_role: home_configuration
+    vars:
+      user: "{{ system_user }}"
+
   - name: Update and upgrade all packages to the latest version
     ansible.builtin.apt:
       update_cache: true

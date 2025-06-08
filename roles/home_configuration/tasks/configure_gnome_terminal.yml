@@ -1,0 +1,91 @@
+#SPDX-License-Identifier: MIT-0
+---
+# folder structure for roles/home_configuration
+
+# Check and Define Gnome Profile ID
+- name: Get Gnome Profile ID List
+  ansible.builtin.command: dconf list "/org/gnome/terminal/legacy/profiles:/"
+  become: false
+  register: dconf_profiles
+  changed_when: false
+
+- name: Set Profile ID
+  ansible.builtin.set_fact:
+    profile_id: "{{ dconf_profiles.stdout_lines[0] }}"
+  when: dconf_profiles.stdout != ""
+  changed_when: false
+
+- name: Set Default Profile ID when Previous Taks Failed
+  ansible.builtin.set_fact:
+    profile_id: ":{{ profile_uuid | 2**128 | random | to_uuid4 }}/"
+  when: dconf_profiles.stdout == ""
+
+- name: Set Profile Name
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}visible-name
+    value: "'{{ user }}'"
+
+- name: Turn Audible Bell Off
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}audible-bell
+    value: "false"
+    state: present
+
+- name: Set Background Colour
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-color
+    value: "'rgb(0,43,54)'"
+
+- name: Set Background Transparency Option
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-transparent-background
+    value: "true"
+
+- name: Set Transparencey Theme to false
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-theme-transparency
+
+- name: Define Background Transparency Value
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-transparency-percent
+    value: "50"
+
+- name: Disable Menu Bar
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/default-show-menubar
+    value: "false"
+  when: when_terminal_hide_menubar
+
+- name: Set Scrollback to Value unlimited
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}scrollback-unlimited
+    value: "true"
+
+- name: Set Terminal Default Width
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}default-size-colums
+    value: "300"
+
+- name: Set Terminal Default Height
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}default-size-rows
+    value: "80" 
+
+- name: Set Terminal Encoding
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}encoding
+    value: "'UTF-8'" 
+
+# Define TMUX 
+- name: Set custom-command
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}custom-command"
+    value: "'tmux'"
+  when: gnome_terminal_start_in_tmux
+
+- name: Set use-custom-command
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}use-custom-command"
+    value: "true"
+  when: gnome_terminal_start_in_tmux
+
