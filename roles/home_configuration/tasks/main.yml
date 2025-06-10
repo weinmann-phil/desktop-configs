@@ -1,8 +1,8 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # main tasks file for roles/home_configuration
-- include_task: folder_structure.yml
+- include_tasks: folder_structure.yml
 
-- include_task: configure_gnome_terminal.yml
+- include_tasks: configure_gnome_terminal.yml
 
-- include_task: configure_display_settings.yml
+- include_tasks: configure_display_settings.yml
