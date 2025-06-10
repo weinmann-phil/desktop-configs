@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  tags: always
   become: true
   vars:
     arch_mapping: # Map ansible architecture {{ ansible_architecture }} names to Docker's architecture names
@@ -17,98 +16,98 @@
     vars:
       user: "{{ system_user }}"
 
-  - name: Update and upgrade all packages to the latest version
-    ansible.builtin.apt:
-      update_cache: true
-      upgrade: dist
-      cache_valid_time: 3600
-
-  # Install APT Packages
-  - name: Install APT Packages
-    include_tasks: playbooks/install_apt_packages.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Snaps
-  - name: Install Snap Packages
-    include_tasks: playbooks/install_snaps.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Ubuntu"]
-  
-  # Customize Gnome Terminal
-  - name: Customize Gnome Terminal
-    include_tasks: playbooks/set-gnome-desktop-profile.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Docker
-  - name: Install Docker (Debian v Ubuntu)
-    include_tasks: playbooks/install_docker.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Dotnet
-  - name: Install Dotnet
-    include_tasks: playbooks/install_dotnet.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Terraspace
-  - name: Install Terraspace (Debian v Ubuntu)
-    include_tasks: playbooks/install_terraspace.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Node Version Manager
-  - name: Install Node Version Manager
-    include_tasks: playbooks/install_nvm.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install Azure CLI
-  - name: Install Azure CLI
-    include_tasks: playbooks/install_azure_cli.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Customize Desktop
-  - name: Customize Desktop
-    include_tasks: playbooks/set-display-settings.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Ubuntu"]
-
-  # Create base structure
-  - name: Add home folder structure
-    include_tasks: playbooks/set-root-folder-structure.yml
-    tags: always
-    when:
-      - ansible_distribution in ["Debian", "Ubuntu"]
-
-  # Install direct apps
-  - name: Instal Applications and Resources Directly
-    include_tasks: playbooks/install_additional_apps.yml
-    tags: always
-
-  # Clone GIT Repos with further base configurations
-  - name: Clone GIT Repos with additional configurations
-    include_tasks: playbooks/clone-base-git-repos.yml
-    tags: always
-    when: 
-      - ansible_distribution in ["Debian", "Ubuntu"]
-  
-  # Install NPM packages
-  - name: Install NPM packages
-    include_tasks: playbooks/install_npm_packages.yml
-    tags: always
+  # - name: Update and upgrade all packages to the latest version
+  #   ansible.builtin.apt:
+  #     update_cache: true
+  #     upgrade: dist
+  #     cache_valid_time: 3600
+  #
+  # # Install APT Packages
+  # - name: Install APT Packages
+  #   include_tasks: playbooks/install_apt_packages.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Snaps
+  # - name: Install Snap Packages
+  #   include_tasks: playbooks/install_snaps.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Ubuntu"]
+  #
+  # # Customize Gnome Terminal
+  # - name: Customize Gnome Terminal
+  #   include_tasks: playbooks/set-gnome-desktop-profile.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Docker
+  # - name: Install Docker (Debian v Ubuntu)
+  #   include_tasks: playbooks/install_docker.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Dotnet
+  # - name: Install Dotnet
+  #   include_tasks: playbooks/install_dotnet.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Terraspace
+  # - name: Install Terraspace (Debian v Ubuntu)
+  #   include_tasks: playbooks/install_terraspace.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Node Version Manager
+  # - name: Install Node Version Manager
+  #   include_tasks: playbooks/install_nvm.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install Azure CLI
+  # - name: Install Azure CLI
+  #   include_tasks: playbooks/install_azure_cli.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Customize Desktop
+  # - name: Customize Desktop
+  #   include_tasks: playbooks/set-display-settings.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Ubuntu"]
+  #
+  # # Create base structure
+  # - name: Add home folder structure
+  #   include_tasks: playbooks/set-root-folder-structure.yml
+  #   tags: always
+  #   when:
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install direct apps
+  # - name: Instal Applications and Resources Directly
+  #   include_tasks: playbooks/install_additional_apps.yml
+  #   tags: always
+  #
+  # # Clone GIT Repos with further base configurations
+  # - name: Clone GIT Repos with additional configurations
+  #   include_tasks: playbooks/clone-base-git-repos.yml
+  #   tags: always
+  #   when: 
+  #     - ansible_distribution in ["Debian", "Ubuntu"]
+  #
+  # # Install NPM packages
+  # - name: Install NPM packages
+  #   include_tasks: playbooks/install_npm_packages.yml
+  #   tags: always
 
 # Tasks to complete before running roles
 #- hosts: all
