@@ -12,7 +12,8 @@
     register: system_user 
 
   - name: Configure Home Environment
-    include_role: home_configuration
+    ansible.builting.include_role: 
+      name: home_configuration
     vars:
       user: "{{ system_user }}"
 
