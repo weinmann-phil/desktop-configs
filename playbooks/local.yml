@@ -9,9 +9,8 @@
   tasks:
   - name: Get System Environment User
     ansible.builtin.local_action: command whoami
-    register: local_user
     become_user: "{{ lookup('env', 'USER') }}"
-    changed_when: false
+    register: local_user
 
   - name: Set User Name
     ansible.builtin.set_fact:
