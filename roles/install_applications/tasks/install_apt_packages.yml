@@ -35,10 +35,10 @@
   become: true
   become_user: "{{ user }}"
 
-- name: Set ZSH as Main Terminal
-  ansible.builtin.command: "chsh -s /usr/bin/zsh"
-  delegate_to: localhost
-  become: true
-  become_user: "{{ user }}"
-  become_medhod: sudo
+# - name: Set ZSH as Main Terminal
+#   ansible.builtin.command: "chsh -s /usr/bin/zsh"
+#   delegate_to: localhost
+#   become: true
+#   become_user: "{{ user }}"
+#   become_medhod: sudo
 
