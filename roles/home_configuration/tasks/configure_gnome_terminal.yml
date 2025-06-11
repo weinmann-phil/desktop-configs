@@ -79,11 +79,11 @@
 # Define TMUX 
 - name: Set custom-command
   dconf:
-    key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}custom-command"
+    key: "/org/gnome/terminal/legacy/profiles:/{{profile_id}}custom-command"
     value: "'tmux'"
 
 - name: Set use-custom-command
   dconf:
-    key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}use-custom-command"
+    key: "/org/gnome/terminal/legacy/profiles:/{{profile_id}}use-custom-command"
     value: "true"
 
