@@ -53,7 +53,7 @@
 
 - name: Disable Menu Bar
   community.general.dconf:
-    key: /org/gnome/terminal/legacy/default-show-menubar
+    key: /org/gnome/terminal/legacy/:headerbar
     value: "false"
   when: when_terminal_hide_menubar
 
