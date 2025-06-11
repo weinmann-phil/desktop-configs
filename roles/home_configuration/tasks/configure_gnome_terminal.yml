@@ -55,7 +55,6 @@
   community.general.dconf:
     key: /org/gnome/terminal/legacy/:headerbar
     value: "false"
-  when: when_terminal_hide_menubar
 
 - name: Set Scrollback to Value unlimited
   community.general.dconf:
