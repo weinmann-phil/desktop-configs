@@ -44,6 +44,7 @@
 - name: Set Transparencey Theme to false
   community.general.dconf:
     key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-theme-transparency
+    value: "false"
 
 - name: Define Background Transparency Value
   community.general.dconf:
