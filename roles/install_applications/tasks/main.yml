@@ -2,4 +2,5 @@
 ---
 # main file for roles/install_applications
 - include_tasks: install_apt_packages.yml
-  when: "{{ ansible_distribution }}"
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
