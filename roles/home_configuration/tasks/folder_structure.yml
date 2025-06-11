@@ -39,7 +39,7 @@
 - name: Create fonts Folder within /home/{{ user }}/.local/share
   ansible.builtin.file:
     path: /home/{{ user }}/.local/share
-    state: diretctory
+    state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0766
