@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: true
   vars:
     arch_mapping: # Map ansible architecture {{ ansible_architecture }} names to Docker's architecture names
       x86_64: amd64
@@ -9,6 +8,7 @@
   tasks:
   - name: Get System Environment User
     ansible.builtin.local_action: command whoami
+    become: yes
     become_user: "{{ lookup('env', 'USER') }}"
     register: local_user
 
