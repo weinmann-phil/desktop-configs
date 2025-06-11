@@ -4,3 +4,14 @@
 - include_tasks: install_apt_packages.yml
   when: ansible_distribution in ["Debian", "Ubuntu"]
 
+- include_tasks: install_additional_apps.yml
+
+- include_tasks: install_azure_cli.yml
+
+- include_tasks: install_docker.yml
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- include_tasks: install_dotnet.yml
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
+
