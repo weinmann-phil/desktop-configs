@@ -11,7 +11,7 @@
 
 - name: Set Profile ID
   ansible.builtin.set_fact:
-    profile_id: "{{ dconf_profiles.stdout_lines[0] }}"
+    profile_id: "{{ dconf_profiles.stdout_lines[1] }}"
   when: dconf_profiles.stdout != ""
   changed_when: false
 
