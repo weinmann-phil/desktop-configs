@@ -81,11 +81,9 @@
   dconf:
     key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}custom-command"
     value: "'tmux'"
-  when: gnome_terminal_start_in_tmux
 
 - name: Set use-custom-command
   dconf:
     key: "/org/gnome/terminal/legacy/profiles:/{{profileid}}use-custom-command"
     value: "true"
-  when: gnome_terminal_start_in_tmux
 
