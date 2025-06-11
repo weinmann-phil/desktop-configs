@@ -6,15 +6,9 @@
       aarch64: arm64
 
   tasks:
-  - name: Get System Environment User
-    ansible.builtin.local_action: command whoami
-    become: yes
-    become_user: "{{ lookup('env', 'USER') }}"
-    register: local_user
-
-  - name: Set User Name
+  - name: Define Local User Name
     ansible.builtin.set_fact:
-      system_user: "{{ local_user.stdout }}"
+      system_user: "{{ lookup('env', 'USER') }}"
 
   - name: debug
     ansible.builtin.debug:
