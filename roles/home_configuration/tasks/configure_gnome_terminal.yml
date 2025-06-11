@@ -34,7 +34,7 @@
 - name: Set Background Colour
   community.general.dconf:
     key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-color
-    value: "'rgb(0,43,54)'"
+    value: "'rgb(0,0,0)'"
 
 - name: Set Background Transparency Option
   community.general.dconf:
