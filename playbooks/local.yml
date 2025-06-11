@@ -16,6 +16,12 @@
     vars:
       user: "{{ system_user }}"
 
+  - name: Install Applications
+    ansible.builtin.include_role:
+      name: install_applications
+    vars:
+      user: "{{ system_user }}"
+
   # - name: Update and upgrade all packages to the latest version
   #   ansible.builtin.apt:
   #     update_cache: true
