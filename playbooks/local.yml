@@ -9,7 +9,11 @@
   tasks:
   - name: Get System Environment User
     ansible.builtin.command: whoami
-    register: system_user 
+    register: system_user
+
+  - name: Debug
+    ansible.builtin.debug:
+      msg: "{{ system_user }}"
 
   - name: Configure Home Environment
     ansible.builtin.include_role: 
