@@ -8,10 +8,15 @@
 
   tasks:
   - name: Get System Environment User
-    ansible.builtin.command: whoami
-    register: system_user
+    ansible.builtin.local_action: command whoami
+    register: local_user
+    changed_when: false
 
-  - name: Debug
+  - name: Set User Name
+    ansible.builtin.set_fact:
+      system_user: "{{ local_user.stdout }}"
+
+  - name: debug
     ansible.builtin.debug:
       msg: "{{ system_user }}"
 
