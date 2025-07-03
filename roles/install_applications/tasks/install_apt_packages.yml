@@ -34,6 +34,7 @@
       - zsh
   become: true
   become_user: "{{ user }}"
+  become_method: sudo
 
 # - name: Set ZSH as Main Terminal
 #   ansible.builtin.command: "chsh -s /usr/bin/zsh"
