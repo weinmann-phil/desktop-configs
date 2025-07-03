@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# main file for roles/install_applications
+- name: Install `psutil`
+  ansible.builtin.pip:
+    name: psutil
+    extra_args: --break-system-packages
+

@@ -23,7 +23,7 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0766
-  when: ac_folder.stat.exists
+  when: not ac_folder.stat.exists
 
 - name: Create fin Folder within Documents
   ansible.builtin.file:
@@ -32,7 +32,7 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0766
-  when: fin_folder.stat.exists
+  when: not fin_folder.stat.exists
 
 - name: Create tech Folder within Documents
   ansible.builtin.file:
@@ -41,5 +41,5 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0766
-  when: tech_folder.stat.exists
+  when: not tech_folder.stat.exists
 

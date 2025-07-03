@@ -30,7 +30,7 @@
   ansible.builtin.copy:
     src: /home/{{ user }}/Downloads/integration/vscode/ada/x64/linux/ada_language_server
     dest: /usr/bin
-  become: yes
+  become: true
   become_method: sudo
 
 - name: Ensure ADA Language Server Exists
