@@ -8,7 +8,7 @@
 
 - name: Create fonts Folder within /home/{{ user }}/.local/share
   ansible.builtin.file:
-    path: /home/{{ user }}/.local/share
+    path: /home/{{ user }}/.local/share/fonts
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
