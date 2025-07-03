@@ -1,0 +1,158 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/define_folder_structure
+
+- name: Ensure bak Folder Existis within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/bak
+  register: config_bak_folder
+
+- name: Create bak Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/bak
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_bak_folder.stat.exists
+
+- name: Ensure `azure` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/azure
+  register: config_azure_folder
+
+- name: Create `azure` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/azure
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_azure_folder.stat.exists
+
+- name: Ensure `bash` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/bash
+  register: config_bash_folder
+
+- name: Create `bash` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/bash
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_bash_folder.stat.exists
+
+- name: Ensure `gcloud` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/gcloud
+  register: config_gcloud_folder
+
+- name: Create `gcloud` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/gcloud
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_gcloud_folder.stat.exists
+
+- name: Ensure `gh` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/gh
+  register: config_gh_folder
+
+- name: Create `gh` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/gh
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_gh_folder.stat.exists
+
+- name: Ensure `git` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/git
+  register: config_git_folder
+
+- name: Create `git` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/git
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_git_folder.stat.exists
+
+- name: Ensure `kn` Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/kn
+  register: config_kn_folder
+
+- name: Create `kn` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/kn
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_kn_folder.stat.exists
+
+- name: Ensure `kubernetes` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/kubernetes
+  register: config_kubernetes_folder
+
+- name: Create `kubernetes` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/kubernetes
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_kubernetes_folder.stat.exists
+
+- name: Ensure `nvim` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/nvim
+  register: config_nvim_folder
+
+- name: Create `nvim` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/nvim
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_nvim_folder.stat.exists
+
+- name: Ensure `proton` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/proton
+  register: config_proton_folder
+
+- name: Create `proton` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/proton
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_proton_folder.stat.exists
+
+- name: Ensure `zsh` Folder Exists within .config
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.config/zsh
+  register: config_zsh_folder
+
+- name: Create `zsh` Folder within ~/.config/
+  ansible.builtin.file:
+    path: /home/{{ user }}/.config/zsh
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not config_zsh_folder.stat.exists
+

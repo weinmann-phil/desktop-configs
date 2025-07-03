@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/define_folder_structure
+
+- name: Ensure git Folder Exists
+  ansible.builtin.stat:
+    path: /home/{{ user }}/git
+  register: git_folder
+
+- name: Create `git` Folder
+  ansible.builtin.file:
+    path: /home/{{ user }}/git
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not git_folder.stat.exists

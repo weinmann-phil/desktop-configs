@@ -1,0 +1,17 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/define_folder_structure
+- name: Ensure fonts Folder Exists within .local/share
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.local/share/fonts
+  register: fonts_folder
+
+- name: Create fonts Folder within /home/{{ user }}/.local/share
+  ansible.builtin.file:
+    path: /home/{{ user }}/.local/share
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: fonts_folder.stat.exists
+

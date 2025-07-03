@@ -1,0 +1,45 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/define_folder_structure
+- name: Ensure ac Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/ac
+  register: ac_folder
+
+- name: Ensure fin Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/fin
+  register: fin_folder
+
+- name: Ensure tech Folder Exists within Documents
+  ansible.builtin.stat:
+    path: /home/{{ user }}/Documents/tech
+  register: tech_folder
+
+- name: Create ac Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/ac
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: ac_folder.stat.exists
+
+- name: Create fin Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/fin
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: fin_folder.stat.exists
+
+- name: Create tech Folder within Documents
+  ansible.builtin.file:
+    path: /home/{{ user }}/Documents/tech
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: tech_folder.stat.exists
+
