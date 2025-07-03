@@ -3,32 +3,32 @@
 # tasks file for roles/install_applications
 - name: Ensure ZSH folder exists
   ansible.builtin.stat:
-    path: "/home/{{ local_user.stdout }}/.oh-my-zsh"
+    path: "/home/{{ user }}/.oh-my-zsh"
   register: zsh_base
 
 - name: Install OH-MY-ZSH
   ansible.builtin.shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   when: not zsh_base.stat.exists
   become: true
-  become_user: "{{ local_user.stdout }}"
+  become_user: "{{ user }}"
   become_method: sudo
 
 # https://github.com/AdaCore/ada_language_server/releases/download/26.0.202502240/als-26.0.202502240-linux-x64.tar.gz 
 - name: Download ADA Language Server
   ansible.builtin.get_url:
     url: https://github.com/AdaCore/ada_language_server/releases/download/26.0.202502240/als-26.0.202502240-linux-x64.tar.gz
-    dest: /home/{{ local_user.stdout }}/Downloads/als-linux-x64.tar.gz
-    owner: "{{ local_user.stdout }}"
+    dest: /home/{{ user }}/Downloads/als-linux-x64.tar.gz
+    owner: "{{ user }}"
     mode: '0755'
 
 - name: Extract ADA Language Server
   ansible.builtin.unarchive:
-    src: /home/{{ local_user.stdout }}/Downloads/als-linux-x64.tar.gz
-    dest: /home/{{ local_user.stdout }}/Downloads
+    src: /home/{{ user }}/Downloads/als-linux-x64.tar.gz
+    dest: /home/{{ user }}/Downloads
 
 - name: "Move ADA Language Server binary to /user/bin"
   ansible.builtin.copy:
-    src: /home/{{ local_user.stdout }}/Downloads/integration/vscode/ada/x64/linux/ada_language_server
+    src: /home/{{ user }}/Downloads/integration/vscode/ada/x64/linux/ada_language_server
     dest: /usr/bin
 
 - name: Ensure ADA Language Server Exists
@@ -41,26 +41,26 @@
     path: "{{ item }}"
     state: absent
   with_fileglob:
-    - "/home/{{ local_user.stdout }}/Downloads/*"
+    - "/home/{{ user }}/Downloads/*"
   when: not adals.stat.exists
 
 - name: Remove ADA folder
   ansible.builtin.file:
-    path: /home/{{ local_user.stdout }}/Downloads/integration
+    path: /home/{{ user }}/Downloads/integration
     state: absent
     recurse: yes
   when: not adals.stat.exists
 
 - name: Ensure Hack Fonts Exist
   ansible.builtin.stat:
-    path: /home/{{ local_user.stdout }}/.local/share/fonts/HackNerdFont-Regular.ttf
+    path: /home/{{ user }}/.local/share/fonts/HackNerdFont-Regular.ttf
   register: nerd_font
 
 - name: Download Hack Nerd Fonts
   ansible.builtin.get_url:
     url: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/HackNerdFont-Regular.ttf
-    dest: /home/{{ local_user.stdout }}/.local/share/fonts/HackNerdFont-Regular.ttf
-    owner: "{{ local_user.stdout }}"
+    dest: /home/{{ user }}/.local/share/fonts/HackNerdFont-Regular.ttf
+    owner: "{{ user }}"
     mode: 0777
   when: not nerd_font.stat.exists
 
@@ -68,18 +68,18 @@
   ansible.builtin.command: 'fc-cache -fv'
   delegate_to: localhost
   become: true
-  become_user: "{{ local_user.stdout }}"
+  become_user: "{{ user }}"
 
 - name: Install Brave Browser
   ansible.builtin.shell: "curl -fsS https://dl.brave.com/install.sh | sh"
   become: true
-  become_user: "{{ local_user.stdout }}"
+  become_user: "{{ user }}"
 
 - name: Get Minikube
   ansible.builtin.get_url: 
     url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
     dest: /usr/local/bin/minikube
-    owner: "{{ local_user.stdout }}"
+    owner: "{{ user }}"
     mode: 0777
   delegate_to: localhost
  
