@@ -16,17 +16,19 @@
     vars:
       user: "{{ system_user }}"
 
+  - name: Install Applications
+    ansible.builtin.include_role:
+      name: install_applications
+    vars:
+      user: "{{ system_user }}"
+
   - name: Configure Home Environment
     ansible.builtin.include_role: 
       name: home_configuration
     vars:
       user: "{{ system_user }}"
 
-  - name: Install Applications
-    ansible.builtin.include_role:
-      name: install_applications
-    vars:
-      user: "{{ system_user }}"
+
 
 
   # - name: Update and upgrade all packages to the latest version
