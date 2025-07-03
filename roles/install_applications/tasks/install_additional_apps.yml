@@ -80,8 +80,10 @@
 - name: Get Minikube
   ansible.builtin.get_url: 
     url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-    dest: /usr/local/bin/minikube
+    dest: /usr/bin/minikube
     owner: "{{ user }}"
     mode: 0777
   delegate_to: localhost
+  become: true
+  become_method: sudo
  
