@@ -13,5 +13,5 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0766
-  when: fonts_folder.stat.exists
+  when: not fonts_folder.stat.exists
 
