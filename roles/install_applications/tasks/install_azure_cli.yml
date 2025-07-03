@@ -18,7 +18,7 @@
     url: https://packages.microsoft.com/keys/microsoft.asc
     dest: /etc/apt/keyrings/microsoft.asc
   become: true
-  become_user: "{{ local_user.stdout }}"
+  become_user: "{{ user }}"
 
 - name: Add Azure CLI GPG apt KEY
   ansible.builtin.apt_key:
@@ -50,5 +50,5 @@
 
 - name: Add user to Azure group
   ansible.builtin.user:
-    name: "{{ local_user.stdout }}"
+    name: "{{ user }}"
 
