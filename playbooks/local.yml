@@ -10,6 +10,12 @@
     ansible.builtin.set_fact:
       system_user: "{{ lookup('env', 'USER') }}"
 
+  - name: Define Folder Structure
+    ansible.builtin.include_role:
+      name: define_folder_structure
+    vars:
+      user: "{{ system_user }}"
+
   - name: Configure Home Environment
     ansible.builtin.include_role: 
       name: home_configuration
