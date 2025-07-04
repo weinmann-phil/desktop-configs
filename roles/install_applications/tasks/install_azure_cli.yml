@@ -26,7 +26,6 @@
     dest: /etc/apt/keyrings/microsoft.gpg
     mode: 0644
     force: true
-    state: present
 
 - name: Print architecture variables
   ansible.builtin.debug:
