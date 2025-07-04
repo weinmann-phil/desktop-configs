@@ -41,13 +41,15 @@
 #   become: true
 #   become_method: sudo
 
-- name: Update apt and install docker-ce
+- name: Update apt and install azure-cli
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
     update_cache: true
   loop:
     - azure-cli
+  become: true
+  become_method: sudo
 
 - name: Add Azure group
   ansible.builtin.group:
