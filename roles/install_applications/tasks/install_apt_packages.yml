@@ -21,6 +21,7 @@
       - gprbuild
       - htop
       - openjdk-21-jdk
+      - lsb-release
       - maven
       - mysql-client
       - neovim
