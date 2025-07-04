@@ -47,8 +47,12 @@
   ansible.builtin.group:
     name: az
     state: present
+  become: true
+  become_method: sudo
 
 - name: Add user to Azure group
   ansible.builtin.user:
     name: "{{ user }}"
+  become: true
+  become_method: sudo 
 
