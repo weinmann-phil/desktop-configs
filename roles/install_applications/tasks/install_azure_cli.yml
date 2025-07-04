@@ -26,6 +26,8 @@
     dest: /etc/apt/keyrings/microsoft.gpg
     mode: 0644
     force: true
+  become: true
+  become_method: sudo
 
 - name: Print architecture variables
   ansible.builtin.debug:
