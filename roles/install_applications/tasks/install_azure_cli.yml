@@ -31,15 +31,7 @@
 
 - name: Print architecture variables
   ansible.builtin.debug:
-    msg: "Architecture: {{ ansible_architecture }}, Codename: {{ ansible_lsb.codename }}"
-
-# - name: Add Microsoft Repository
-#   ansible.builtin.apt_repository:
-#     repo: deb [arch={{ arch_mapping[ansible_architecture] | default(ansible_lsb.codename) }} signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_lsb.codename }} main
-#     filename: azure-cli
-#     state: present
-#   become: true
-#   become_method: sudo
+    msg: "Architecture: {{ ansible_architecture }}, Codename: {{ environment_code_name | default( ansible_lsb.codename ) }}"
 
 - name: Update apt and install azure-cli
   ansible.builtin.apt:
