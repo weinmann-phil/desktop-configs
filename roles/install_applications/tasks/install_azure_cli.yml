@@ -19,6 +19,7 @@
     dest: /etc/apt/keyrings/microsoft.asc
   become: true
   become_user: "{{ user }}"
+  become_method: sudo
 
 - name: Add Azure CLI GPG apt KEY
   ansible.builtin.apt_key:

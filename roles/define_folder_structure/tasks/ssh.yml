@@ -1,0 +1,18 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/define_folder_structure
+
+- name: Ensure keys Folder Exists within .ssh
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.ssh/keys
+  register: ssh_keys_folder
+
+- name: Create keys Folder within .ssh
+  ansible.builtin.file:
+    path: /home/{{ user }}/.ssh/keys
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0766
+  when: not ssh_keys_folder
+
