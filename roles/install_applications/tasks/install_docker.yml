@@ -14,14 +14,17 @@
   when: not keyrings_folder.stat.exists
 
 - name: Add Docker GPG apt KEY
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
-    keyring: /etc/apt/keyrings/docker.gpg
-    state: present
+    dest: /etc/apt/keyrings/docker.gpg
+    mode: 0644
+    force: true
+  become: true
+  become_method: sudo
 
 - name: Print architecture variables
   ansible.builtin.debug:
-    msg: "Architecture: {{ ansible_architecture }}, Codename: {{ ansible_lsb.codename }}"
+    msg: "Architecture: {{ ansible_architecture }}, Codename: {{ environment_code_name | default( ansible_lsb.codename ) }}"
 
 - name: Add Docker Repository
   ansible.builtin.apt_repository:
@@ -35,22 +38,28 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
-    update_cache: true
+    # update_cache: true
   loop:
     - docker-ce
     - docker-ce-cli
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
+  become: true
+  become_method: sudo
 
 - name: Add Docker group
   ansible.builtin.group:
     name: docker
     state: present
+  become: true
+  become_method: sudo
 
 - name: Add user to Docker group
   ansible.builtin.user:
     name: "{{ local_user.stdout }}"
+  become: true
+  become_method: sudo 
 
 - name: Enable and start Docker services
   systemd:
@@ -61,5 +70,4 @@
     - docker.service
     - containerd.service
   become: true
-  become_user: "{{ local_user.stdout }}"
-
+  become_method: sudo 
