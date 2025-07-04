@@ -32,7 +32,7 @@
     filename: docker
     state: present
   become: true
-  become_user: "{{ local_user.stdout }}"
+  become_user: "{{ user }}"
 
 - name: Update apt and install docker-ce
   ansible.builtin.apt:
@@ -57,7 +57,7 @@
 
 - name: Add user to Docker group
   ansible.builtin.user:
-    name: "{{ local_user.stdout }}"
+    name: "{{ user }}"
   become: true
   become_method: sudo 
 
