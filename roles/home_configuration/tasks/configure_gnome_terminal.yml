@@ -5,7 +5,7 @@
 # Check and Define Gnome Profile ID
 - name: Get Gnome Profile ID List
   ansible.builtin.command: |
-    gsettings get "org.gnome.Terminal.Legacy.ProfilesList default"
+    gsettings get org.gnome.Terminal.Legacy.ProfilesList default
   become: false
   register: default_profile
 
