@@ -7,13 +7,11 @@
   ansible.builtin.command: dconf list "/org/gnome/terminal/legacy/profiles:/"
   become: false
   register: dconf_profiles
-  changed_when: false
 
 - name: Set Profile ID
   ansible.builtin.set_fact:
-    profile_id: "{{ dconf_profiles.stdout_lines[1] }}"
+    profile_id: "{{ dconf_profiles.stdout_lines[0] }}"
   when: dconf_profiles.stdout != ""
-  changed_when: false
 
 - name: Set Default Profile ID when Previous Taks Failed
   ansible.builtin.set_fact:
