@@ -13,6 +13,7 @@
     - kubectl
     - kubelet
     - node
+    - ruby
   become: true
   become_method: sudo
 

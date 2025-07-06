@@ -1,3 +1,28 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for roles/install_applications
+- name: Add APT signing key from URL
+  ansible.builtin.get_url:
+    url: https://apt.boltops.com/boltops-key.public
+    state: present
+
+- name: Add Terraspace Repository
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.boltops.com stable main
+    filename: boltops
+    state: present
+
+- name: Update apt and install Terraspace
+  ansible.builtin.apt:
+    name: terraspace
+    state: present
+    update_cache: true
+
+- name: Add Terraspace Group
+  ansible.builtin.group:
+    name: terraspace
+    state: present
+
+- name: Add user to Terraspace group
+  ansible.builtin.user:
+    name: "{{ user }}"
