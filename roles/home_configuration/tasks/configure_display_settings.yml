@@ -24,6 +24,13 @@
   become: true
   become_method: sudo
 
+- name: Set Wallpaper
+  community.general.dconf:
+    key: /org/gnome/desktop/background/picture-uri-dark
+    value: "'file:///usr/share/backgrounds/stars-wallpaper.png'"
+  become: true
+  become_method: sudo
+
 - name: Position Wallpaper
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-options
