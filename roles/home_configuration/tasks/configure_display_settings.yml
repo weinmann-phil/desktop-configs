@@ -13,7 +13,7 @@
     dest: /usr/share/backgrounds/stars-wallpaper.png
     owner: root
     group: root
-  when: wallpaper.stat.exists
+  when: not wallpaper.stat.exists
   become: true
   become_method: sudo
 
