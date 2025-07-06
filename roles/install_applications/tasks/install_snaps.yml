@@ -4,7 +4,7 @@
 - name: Install Classic Packages
   community.general.snap:
     name: "{{ item }}"
-    classic: yes
+    classic: true
   loop:
     - opentofu
     - go
@@ -17,7 +17,7 @@
 - name: Install Simple Packages
   community.general.snap:
     name: "{{ item }}"
-    classic: no
+    classic: false
   loop:
     - keepassxc
     - kompose
