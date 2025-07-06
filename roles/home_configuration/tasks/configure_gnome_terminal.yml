@@ -28,6 +28,7 @@
   community.general.dconf:
     key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}visible-name
     value: "'{{ user }}'"
+    state: present
   become: true
   become_method: sudo
 
