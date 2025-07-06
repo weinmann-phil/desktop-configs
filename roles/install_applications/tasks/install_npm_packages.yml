@@ -1,3 +1,11 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for roles/install_applications
+- name: Install NVim-Treesitter CLI with NPM
+  community.general.npm:
+    name: tree-sitter-cli
+    global: yes
+  become: true
+  become_method: sudo
+  environment:
+    PATH: '{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.npm-global/bin'
