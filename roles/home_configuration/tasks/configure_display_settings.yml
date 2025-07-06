@@ -21,22 +21,29 @@
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-uri
     value: "'file:///usr/share/backgrounds/stars-wallpaper.png'"
+  become: true
+  become_method: sudo
 
 - name: Position Wallpaper
   community.general.dconf:
     key: /org/gnome/desktop/background/picture-options
     value: "'zoom'"
+  become: true
+  become_method: sudo
 
 # Define Screensaver Options
 - name: Set Screensaver After 900 Seconds
   community.general.dconf:
     key: /org/gnome/desktop/session/idle-delay
     value: "900"
+  become: true
+  become_method: sudo
 
 # Set the Icon Size within Dock
 - name: Define Icon Size of Dock
   community.general.dconf:
     key: /org/gnome/shell/exentsions/dash-to-dock/dash-max-icon-size
     value: "20"
-
+  become: true
+  become_method: sudo
 
