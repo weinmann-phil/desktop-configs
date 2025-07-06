@@ -4,13 +4,14 @@
 
 # Check and Define Gnome Profile ID
 - name: Get Gnome Profile ID List
-  ansible.builtin.command: dconf list "/org/gnome/terminal/legacy/profiles:/"
+  ansible.builtin.command: |
+    gsettings get "org.gnome.Terminal.Legacy.ProfilesList default"
   become: false
-  register: dconf_profiles
+  register: default_profile
 
 - name: Set Profile ID
   ansible.builtin.set_fact:
-    profile_id: "{{ dconf_profiles.stdout_lines[0] }}"
+    profile_id: "{{ default_profile.stdout[1:-1] }}"
   when: dconf_profiles.stdout != ""
 
 - name: Debug
@@ -25,48 +26,42 @@
   become_method: sudo
 
 - name: Set Profile Name
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}visible-name
-    value: "'{{ user }}'"
-    state: present
+  community.general.command: |
+    gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/{{ profile_id }}" visible-name {{ user }}
   become: true
   become_method: sudo
 
 - name: Turn Audible Bell Off
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}audible-bell
-    value: "false"
-    state: present
+  community.general.command: |
+    gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/{{ profile_id }}" audible-bell false
   become: true
   become_method: sudo
 
 - name: Set Background Colour
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-color
-    value: "'rgb(0,0,0)'"
+  community.general.command: |
+    gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/{{ profile_id }}" background-color 'rgb(0,0,0)'
   become: true
   become_method: sudo
 
 - name: Set Background Transparency Option
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-transparent-background
-    value: "true"
+  community.general.command: |
+    gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/{{ profile_id }}" background-transparency-percent 50
   become: true
   become_method: sudo
 
-- name: Set Transparencey Theme to false
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-theme-transparency
-    value: "false"
-  become: true
-  become_method: sudo
+# - name: Set Transparencey Theme to false
+#   community.general.command:
+#     key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}use-theme-transparency
+#     value: "false"
+#   become: true
+#   become_method: sudo
 
-- name: Define Background Transparency Value
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-transparency-percent
-    value: "50"
-  become: true
-  become_method: sudo
+# - name: Define Background Transparency Value
+#   community.general.dconf:
+#     key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}background-transparency-percent
+#     value: "50"
+#   become: true
+#   become_method: sudo
 
 - name: Disable Menu Bar
   community.general.dconf:
@@ -76,9 +71,8 @@
   become_method: sudo
 
 - name: Set Scrollback to Value unlimited
-  community.general.dconf:
-    key: /org/gnome/terminal/legacy/profiles:/{{ profile_id }}scrollback-unlimited
-    value: "true"
+  community.general.command: |
+    gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/{{ profile_id }}" scrollback-unlimited true
   become: true
   become_method: sudo
 
