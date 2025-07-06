@@ -20,3 +20,5 @@
 - include_tasks: install_snaps.yml
   when: ansible_distribution in ["Ubuntu"]
 
+- include_tasks: install_nvm.yml
+
