@@ -12,8 +12,10 @@
   ansible.builtin.set_fact:
     profile_id: "{{ dconf_profiles.stdout_lines[0] }}"
   when: dconf_profiles.stdout != ""
-  become: true
-  become_method: sudo
+
+- name: Debug
+  ansible.builtin.debug:
+    msg: "{{ profile_id }}"
 
 - name: Set Default Profile ID when Previous Taks Failed
   ansible.builtin.set_fact:
