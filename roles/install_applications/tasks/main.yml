@@ -14,7 +14,9 @@
 # - include_tasks: install_docker.yml
 #   when: ansible_distribution in ["Debian", "Ubuntu"]
 
-- include_tasks: install_dotnet.yml
-  when: ansible_distribution in ["Debian", "Ubuntu"]
+# - include_tasks: install_dotnet.yml
+#   when: ansible_distribution in ["Debian", "Ubuntu"]
 
+- include_tasks: install_snaps.yml
+  when: ansible_distribution in ["Ubuntu"]
 
