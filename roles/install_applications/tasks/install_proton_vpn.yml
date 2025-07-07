@@ -1,0 +1,26 @@
+#SPDX-License-Identifier: MIT-0
+---
+# main file for roles/install_applications
+- name: Download package containing repo configuration
+  ansible.builtin.get_url:
+    url: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
+    dest: /home/{{ user }}/Downloads/protonvpn-stable-release_1.0.8_all.deb
+    owner: "{{ user }}"
+    mode: 0777
+
+- name: Install package 
+  ansible.builtin.apt: 
+    deb: /home/{{ user }}/Downloads/protonvpn-stable-release_1.0.8_all.deb
+  become: true
+  become_method: sudo
+
+- name: Install Application
+  ansible.builtin.apt:
+    pkg:
+      - proton-vpn-gnome-desktop
+      - libayatana-appindicator3-1
+      - gir1.2-ayatanaappindicator3-0.1
+      - gnome-shell-extension-appindicator
+  become: true
+  become_method: sudo
+

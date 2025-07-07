@@ -10,4 +10,7 @@
 - [ps-aux - StackOverflow - Install snap packages with Ansible](https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible)
 - [Documentation - Ansible - community.general.snap module -- Manages snaps](https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html)
 
+## Proton
+
+- [ProtonVPN - Install VPN on Ubuntu](https://protonvpn.com/support/official-linux-vpn-ubuntu)
 
