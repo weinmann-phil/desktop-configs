@@ -22,3 +22,5 @@
 
 - include_tasks: install_nvm.yml
 
+- include_tasks: install_proton_vpn.yml
+
