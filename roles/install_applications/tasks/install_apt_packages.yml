@@ -16,6 +16,8 @@
       - dnsutils
       - dotnet-runtime-8.0
       - dotnet-sdk-8.0
+      - edb-debugger
+      - gdb
       - gnat-13
       - gnupg
       - gpp
@@ -26,10 +28,12 @@
       - mysql-client
       - neovim
       - netcat-traditional
+      - nikto
       - postgresql-client
       - python3-pip
       - python3-setuptools
       - software-properties-common
+      - sqlmap
       - tree
       - virtualenv
       - zsh
