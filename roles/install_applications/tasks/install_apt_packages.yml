@@ -24,6 +24,8 @@
       - gprbuild
       - htop
       - openjdk-21-jdk
+      - lldb
+      - liblldb-dev
       - maven
       - mysql-client
       - nasm

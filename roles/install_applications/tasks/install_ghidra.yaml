@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/install_applications
+- name: Download Ghidra release file
+  ansible.builtin.get_url:
+    url: https://github.com/NationalSecurityAgency/ghidra/archive/refs/tags/Ghidra_11.4.2_build.tar.gz
+    dest: /home/{{ user }}/Downloads/ghidra.tar.gz
+    owner: "{{ user }}"
+    mode: '0777'
+
+- name: Extract Ghidra
+  ansible.builtin.unarchive:
+    src: /home/{{ user }}/Downloads/ghidra.tar.gz
+    dest: /home/{{ user }}/Downloads
+
+- name: Move Ghidra binary to /usr/bin
+  ansible.builtin.copy:
+    src: /home/{{ user }}/Downloads/ghidra.tar.gz
+    dest: /usr/bin/support/pyGhidraRun
+  become: true
+  become_method: sudo
