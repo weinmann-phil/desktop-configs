@@ -15,7 +15,7 @@
 
 - name: Move Ghidra binary to /usr/bin
   ansible.builtin.copy:
-    src: /home/{{ user }}/Downloads/ghidra.tar.gz
-    dest: /usr/bin/support/pyGhidraRun
+    src: /home/{{ user }}/Downloads/ghidra/support/pyGhidraRun
+    dest: /usr/bin/pyGhidraRun
   become: true
   become_method: sudo
