@@ -11,7 +11,7 @@
 - name: Extract Ghidra
   ansible.builtin.unarchive:
     src: /home/{{ user }}/Downloads/ghidra.tar.gz
-    dest: /home/{{ user }}/Downloads
+    dest: /home/{{ user }}/Downloads/ghidra
 
 - name: Move Ghidra binary to /usr/bin
   ansible.builtin.copy:
